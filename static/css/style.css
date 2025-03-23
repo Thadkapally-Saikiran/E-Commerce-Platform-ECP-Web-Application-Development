@@ -1,0 +1,137 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;  /* Sets the default font for the page */
+    margin: 0;                         /* Removes default margin */
+    padding: 0;                        /* Removes default padding */
+    background-color: #f8f9fa;           /* Sets a light background color */
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;                     /* Uses flexbox layout for navbar items */
+    justify-content: space-between;    /* Spaces out the items evenly with first and last aligned to edges */
+    align-items: center;               /* Vertically centers the items */
+    background: #343a40;               /* Dark background for the navbar */
+    padding: 15px 20px;                /* Padding inside the navbar */
+    color: white;                      /* Sets the text color to white */
+}
+
+/* Logo Section inside Navbar */
+.navbar .logo {
+    display: flex;                     /* Uses flexbox to align logo image and text */
+    align-items: center;               /* Vertically centers the logo elements */
+}
+
+/* Logo Image Styling */
+.navbar .logo img {
+    height: 40px;                      /* Sets the height of the logo image */
+    margin-right: 10px;                /* Adds space between the logo image and text */
+}
+
+/* Logo Text Styling */
+.navbar .logo span {
+    font-size: 22px;                   /* Sets the font size of the logo text */
+    font-weight: bold;                 /* Makes the logo text bold */
+}
+
+/* Navigation Links in Navbar */
+.navbar .nav-links {
+    list-style: none;                  /* Removes default list styling */
+    display: flex;                     /* Displays the links inline using flexbox */
+    gap: 20px;                         /* Adds space between each navigation link */
+}
+
+/* Individual Navigation Link Items */
+.navbar .nav-links li {
+    display: inline;                   /* Ensures list items are inline */
+}
+
+/* Styling for the navigation anchor tags */
+.navbar .nav-links a {
+    text-decoration: none;             /* Removes underline from links */
+    color: white;                      /* Sets link text color to white */
+    font-size: 18px;                   /* Sets the font size for links */
+}
+
+/* Authentication Links (e.g., Login/Signup buttons) in Navbar */
+.navbar .auth-links .btn {
+    background: #ff6b6b;               /* Sets a red background for the button */
+    color: white;                      /* Sets button text to white */
+    padding: 8px 15px;                 /* Adds padding inside the button */
+    border-radius: 5px;                /* Rounds the button corners */
+    text-decoration: none;             /* Removes underline */
+    margin-left: 10px;                 /* Adds left margin to separate buttons */
+}
+
+/* Hover state for authentication buttons */
+.navbar .auth-links .btn:hover {
+    background: #ff3b3b;               /* Darker red background on hover */
+}
+
+/* Footer Styles */
+.footer {
+    background: #222;                  /* Dark background for the footer */
+    color: white;                      /* White text color for the footer */
+    padding: 40px 0;                   /* Vertical padding for the footer */
+    text-align: center;                /* Center-aligns footer text */
+    position: relative;                /* Positions the footer relative to its normal position */
+    bottom: 0;                         /* Sticks the footer to the bottom (if using fixed positioning) */
+    width: 100%;                       /* Ensures the footer spans the full width */
+}
+
+/* Footer Container: organizes footer content */
+.footer-container {
+    display: flex;                     /* Uses flexbox layout for footer sections */
+    flex-wrap: wrap;                   /* Allows footer items to wrap on smaller screens */
+    justify-content: space-between;    /* Distributes footer sections evenly */
+    max-width: 1200px;                 /* Sets a maximum width for the footer content */
+    margin: 0 auto;                    /* Centers the footer container */
+    padding: 20px;                     /* Adds padding inside the container */
+}
+
+/* Footer Section: individual segments of the footer */
+.footer-section {
+    flex: 1;                           /* Allows each section to expand equally */
+    min-width: 250px;                  /* Minimum width to maintain readability */
+    margin: 10px;                      /* Adds margin around each section */
+    text-align: left;                  /* Left-aligns text in each section */
+}
+
+/* Footer Section Titles */
+.footer-section h2 {
+    font-size: 18px;                   /* Sets font size for section titles */
+    margin-bottom: 10px;               /* Adds space below the titles */
+    color: #ff6b6b;                    /* Uses red color for emphasis */
+}
+
+/* Footer Links: removes default list styling and spacing */
+.footer-section ul {
+    list-style: none;                  /* Removes default bullet points */
+    padding: 0;                        /* Removes default padding */
+}
+
+/* Individual Footer Link Items */
+.footer-section ul li {
+    margin: 5px 0;                     /* Adds vertical spacing between links */
+}
+
+/* Styling for footer anchor tags */
+.footer-section ul li a {
+    text-decoration: none;             /* Removes underline from links */
+    color: white;                      /* White text color for links */
+    transition: color 0.3s;            /* Smooth transition for hover effect */
+}
+
+/* Hover state for footer links */
+.footer-section ul li a:hover {
+    color: #ff6b6b;                    /* Changes text color to red on hover */
+}
+
+/* Footer Bottom: bottom-most footer text */
+.footer-bottom {
+    padding: 15px;                     /* Padding for the bottom footer area */
+    font-size: 14px;                   /* Smaller font size for fine print */
+    text-align: center;                /* Center-aligns the bottom text */
+    margin-top: 20px;                  /* Adds space above the bottom area */
+    font-weight: bold;                 /* Bold text for emphasis */
+}

@@ -1,0 +1,112 @@
+/* Container for the registration form */
+.register-container {
+    /* Set the maximum width of the container */
+    max-width: 450px;
+    /* Center the container horizontally with auto margins */
+    margin: 50px auto;
+    /* Add padding inside the container */
+    padding: 30px;
+    /* Set the background color to white */
+    background: white;
+    /* Apply a subtle shadow around the container */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* Round the corners of the container */
+    border-radius: 8px;
+    /* Center-align text within the container */
+    text-align: center;
+}
+
+/* Styling for the heading inside the registration container */
+.register-container h2 {
+    /* Add space below the heading */
+    margin-bottom: 15px;
+    /* Set the text color */
+    color: #333;
+}
+
+/* Styling for paragraphs inside the registration container */
+.register-container p {
+    /* Set the font size */
+    font-size: 14px;
+    /* Add space below the paragraph */
+    margin-bottom: 20px;
+}
+
+/* Styling for links inside the registration container */
+.register-container a {
+    /* Set the text color */
+    color: #ff6b6b;
+    /* Remove underline from links */
+    text-decoration: none;
+    /* Make the link text bold */
+    font-weight: bold;
+}
+
+/* Change the appearance of links when hovered over */
+.register-container a:hover {
+    /* Underline the link text on hover */
+    text-decoration: underline;
+}
+
+/* Styling for the registration form */
+.register-form {
+    /* Arrange form elements in a column */
+    display: flex;
+    /* Add space between form elements */
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Styling for labels within the registration form */
+.register-form label {
+    /* Align text to the left */
+    text-align: left;
+    /* Make the label text bold */
+    font-weight: bold;
+    /* Set the text color */
+    color: #444;
+}
+
+/* Styling for input fields within the registration form */
+.register-form input {
+    /* Set the width to fill the container */
+    width: 100%;
+    /* Add padding inside the input fields */
+    padding: 10px;
+    /* Set a light gray border around the input fields */
+    border: 1px solid #ddd;
+    /* Round the corners of the input fields */
+    border-radius: 5px;
+}
+
+/* Change the border color of input fields when focused */
+.register-form input:focus {
+    /* Set the border color to match the theme */
+    border-color: #ff6b6b;
+    /* Remove the default outline */
+    outline: none;
+}
+
+/* Styling for buttons */
+.btn {
+    /* Set the background color */
+    background: #ff6b6b;
+    /* Set the text color to white */
+    color: white;
+    /* Add padding inside the button */
+    padding: 10px;
+    /* Remove the default border */
+    border: none;
+    /* Round the corners of the button */
+    border-radius: 5px;
+    /* Set the font size */
+    font-size: 16px;
+    /* Change the cursor to a pointer on hover */
+    cursor: pointer;
+}
+
+/* Change the background color of buttons when hovered over */
+.btn:hover {
+    /* Darken the background color on hover */
+    background: #e05454;
+}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+<!-- This template extends the base layout (base.html) to reuse common site components such as header, footer, and global styles -->
+
+{% block head %}
+    <!-- Include register-specific CSS styling from the static/css folder -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Main container for the registration page -->
+<div class="register-container">
+    <!-- Heading for the registration page -->
+    <h2>Create an Account</h2>
+
+    <!-- Registration Form -->
+    <form method="post" class="register-form">
+        <!-- Username Field -->
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required>
+        
+        <!-- Email Field -->
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+        
+        <!-- Password Field -->
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required>
+        
+        <!-- Submit Button for the form
+             The "btn" class is used for button styling and may incorporate Bootstrap styles if defined globally -->
+        <button type="submit" class="btn">Register</button>
+    </form>
+    
+    <!-- Navigation Link for existing users to go to the Login page -->
+    <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+</div>
+{% endblock %}

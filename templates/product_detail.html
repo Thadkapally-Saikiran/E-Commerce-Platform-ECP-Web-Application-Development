@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+<!-- This template extends base.html to inherit the overall page structure, including header and footer -->
+
+{% block title %}{{ product.name }} - Product Details{% endblock %}
+<!-- Sets the page title dynamically based on the product name -->
+
+{% block head %}
+    <!-- Link to the product detail specific CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/product_detail.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Main container for the product detail page -->
+<div class="product-container">
+    <!-- Left Section: Product Image -->
+    <div class="product-image">
+        <!-- 
+            Display the product image dynamically.
+            The image path is processed by splitting the product.image string on 'static/' 
+            and passing the latter part to url_for() for proper static file handling.
+        -->
+        <img src="{{ url_for('static', filename=product.image.split('static/')[1]) }}" alt="{{ product.name }}">
+    </div>
+
+    <!-- Right Section: Product Information -->
+    <div class="product-info">
+        <!-- Product Name -->
+        <h2>{{ product.name }}</h2>
+        <!-- Product Description -->
+        <p class="description">{{ product.description }}</p>
+        
+        <!-- Conditional display: if the product is marked as a best seller, show a badge -->
+        {% if product.best_seller %}
+            <span class="best-seller">Best Seller</span>
+        {% endif %}
+        
+        <!-- Display product quality with a bold label -->
+        <p class="quality"><strong>Quality:</strong> {{ product.quality }}</p>
+
+        <!-- Price Section: Displays pricing details based on discount availability -->
+        <div class="price-section">
+            {% if product.discount > 0 %}
+                <!-- When a discount is available, show the original price with strikethrough -->
+                <p class="original-price">₹{{ product.price }}</p>
+                <!-- Calculate and display the discounted price -->
+                <p class="discounted-price">₹{{ '%.2f' | format(product.price - (product.price * product.discount / 100)) }}</p>
+                <!-- Display the discount percentage -->
+                <p class="discount">-{{ product.discount }}% Off</p>
+            {% else %}
+                <!-- If no discount is applied, display the final price -->
+                <p class="final-price">₹{{ product.price }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Display available stock quantity with a bold label -->
+        <p class="quantity"><strong>Stock:</strong> {{ product.quantity }} available</p>
+
+        <!-- Section for displaying reviews -->
+        <h4>Reviews:</h4>
+        <ul class="review-list">
+            <!-- Loop through the product reviews; if none exist, show a default message -->
+            {% for review in product.reviews %}
+                <li>{{ review }}</li>
+            {% else %}
+                <li>No reviews yet.</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Action Buttons for user interactions -->
+        <div class="action-buttons">
+            <!-- "Buy Now" button: redirects to the checkout page with product_id passed as a parameter -->
+            <a href="{{ url_for('checkout', product_id=product.id) }}" class="btn buy-now">🛒 Buy Now</a>
+            <!-- "Add to Favorites" button: allows user to add product to their favorites list -->
+            <a href="{{ url_for('add_favorite', product_id=product.id) }}" class="btn favorite-btn">❤️ Add to Favorites</a>
+            <a href="{{ url_for('add_cart', product_id=product.id) }}" class="btn cart-btn">🛒 Add to Cart</a>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

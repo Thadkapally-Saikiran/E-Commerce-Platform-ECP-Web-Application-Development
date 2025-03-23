@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+<!-- Inherits the common layout and structure from base.html -->
+
+{% block head %}
+    <!-- Include the verify-specific CSS for styling this OTP verification page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/verify.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Main container for OTP verification -->
+<div class="otp-container">
+    <!-- Page heading -->
+    <h2>Enter OTP</h2>
+
+    <!-- Conditional block: Display error message if an 'error' parameter exists in the query string -->
+    {% if request.args.get('error') %}
+        <p class="error-msg">{{ request.args.get('error') }}</p>
+    {% endif %}
+
+    <!-- OTP form: Uses POST method to securely submit the OTP value -->
+    <form method="POST" class="otp-form">
+        <!-- Label for the OTP input field -->
+        <label for="otp">OTP</label>
+        <!-- Input field for OTP; 'required' attribute enforces that the field must be filled -->
+        <input type="text" name="otp" required>
+
+        <!-- Submit button styled with the 'btn' class. 
+             The 'btn' class may derive its styles from Bootstrap if included globally, 
+             or from custom CSS in verify.css -->
+        <button type="submit" class="btn">Verify OTP</button>
+    </form>
+</div>
+{% endblock %}

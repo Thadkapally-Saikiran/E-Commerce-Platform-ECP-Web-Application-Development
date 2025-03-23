@@ -1,0 +1,31 @@
+<!-- Navigation Bar for the E-Shop -->
+<nav class="navbar">
+    <!-- Logo Section -->
+    <div class="logo">
+        <!-- Logo image: uses Flask's url_for() to dynamically generate the URL for the logo image stored in the static/images folder -->
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="E-Commerce Logo">
+        <!-- Store name displayed next to the logo -->
+        <span>E-Shop</span>
+    </div>
+    
+    <!-- Main Navigation Links -->
+    <ul class="nav-links">
+        <!-- Each list item contains an anchor tag linking to different pages -->
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('dashboard') }}">Products</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+    </ul>
+
+    <!-- Authentication Links Section -->
+    <div class="auth-links">
+        <!-- Check if 'user_id' exists in the session. If yes, show Logout; otherwise, show Login and Register buttons -->
+        {% if 'user_id' in session %}
+            <!-- Logout button styled with the "btn" class -->
+            <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+        {% else %}
+            <!-- Login and Register buttons styled with the "btn" class -->
+            <a href="{{ url_for('login') }}" class="btn">Login</a>
+            <a href="{{ url_for('register') }}" class="btn">Register</a>
+        {% endif %}
+    </div>
+</nav>

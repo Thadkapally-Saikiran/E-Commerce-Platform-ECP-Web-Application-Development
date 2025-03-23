@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}My Cart{% endblock %}
+{% block head %}
+    <!-- You can create a new CSS file (cart.css) or add inline styles here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+{% endblock %}
+{% block content %}
+<div class="cart-container">
+    <h2>My Cart</h2>
+    {% if items %}
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price (Each)</th>
+                <th>Total Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>
+                    <img src="{{ url_for('static', filename=item.image.split('static/')[1]) }}" alt="{{ item.name }}" width="50">
+                    {{ item.name }}
+                </td>
+                <td>{{ item.quantity }}</td>
+                <td>₹{{ '%.2f'|format(item.discounted_price) }}</td>
+                <td>₹{{ '%.2f'|format(item.total_price) }}</td>
+                <td>
+                    <!-- Delete button -->
+                    <a href="{{ url_for('delete_cart', cart_id=item.cart_id) }}" class="btn delete-btn">Delete</a>
+                    <!-- Buy Now button: Pass quantity to checkout -->
+                    <a href="{{ url_for('checkout', product_id=item.product_id) }}?quantity={{ item.quantity }}" class="btn buy-now-btn">Buy Now</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Grand Total: ₹{{ '%.2f'|format(grand_total) }}</h3>
+    <!-- Back to Dashboard button -->
+    <a href="{{ url_for('dashboard') }}" class="btn back-btn">Back to Dashboard</a>
+    {% else %}
+    <p>Your cart is empty.</p>
+    <a href="{{ url_for('dashboard') }}" class="btn back-btn">Back to Products</a>
+    {% endif %}
+</div>
+{% endblock %}

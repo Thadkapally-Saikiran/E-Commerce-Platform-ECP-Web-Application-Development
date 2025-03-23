@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+<!-- This template extends the base layout, reusing the common header, footer, and other shared elements -->
+
+{% block head %}
+    <!-- Include the payment success page-specific stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/payment_success.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Main container for the payment success message -->
+<div class="success-container">
+    <!-- Heading for the success message with an emoji for added visual appeal -->
+    <h2>Thank You for Your Purchase! 🎉</h2>
+    
+    <!-- Paragraph displaying a confirmation message including the product name -->
+    <p>Your order for <strong>{{ product.name }}</strong> has been placed successfully.</p>
+    
+    <!-- Paragraph displaying the shipping address dynamically from the order data -->
+    <p>It will be shipped to <strong>{{ order.address }}</strong>.</p>
+    
+    <!-- Button styled as a link to navigate back to the dashboard;
+         'btn' class likely inherits styles from global or Bootstrap CSS -->
+    <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+/* Container for the payment section */
+.payment-container {
+    max-width: 500px;               /* Limits the width to 500px */
+    margin: 50px auto;              /* Centers the container and adds vertical spacing */
+    padding: 30px;                  /* Adds space inside the container */
+    background: #f8f9fa;            /* Light gray background for a clean look */
+    border-radius: 10px;            /* Rounds the container edges */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Adds a soft shadow for depth */
+    text-align: center;             /* Centers all text inside the container */
+}
+
+/* Styling for the payment heading */
+.payment-container h2 {
+    color: #007bff;                 /* Blue color for an eye-catching heading */
+    margin-bottom: 20px;            /* Space below the heading for separation */
+}
+
+/* Styling for paragraph text inside the payment container */
+.payment-container p {
+    font-size: 18px;                /* Sets a readable font size */
+    color: #333;                    /* Dark gray text color */
+    margin-bottom: 10px;            /* Space below the paragraph */
+}
+
+/* Styling for the payment button */
+.pay-btn {
+    padding: 10px 20px;             /* Adds padding for a larger clickable area */
+    font-size: 18px;                /* Increases font size for better readability */
+    background-color: #28a745;      /* Green color to indicate a positive action */
+    color: white;                   /* White text for contrast */
+    border: none;                   /* Removes default button border */
+    border-radius: 5px;             /* Rounds the button edges */
+    cursor: pointer;                /* Changes cursor to pointer when hovered */
+    transition: 0.3s ease;          /* Smooth transition effect for hover */
+}
+
+/* Hover effect for the payment button */
+.pay-btn:hover {
+    background-color: #218838;      /* Darker green shade on hover for visual feedback */
+}

@@ -1,0 +1,114 @@
+/* Container for the entire product detail section */
+.product-container {
+    display: flex; /* Aligns child elements (image and info) side by side */
+    gap: 20px; /* Space between the image and product info */
+    max-width: 1000px; /* Maximum width of the container */
+    margin: 30px auto; /* Centers the container with vertical spacing */
+    padding: 20px; /* Inner spacing within the container */
+    background: white; /* Background color of the container */
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Styling for the product image section */
+.product-image img {
+    max-width: 400px; /* Maximum width of the product image */
+    border-radius: 10px; /* Rounded corners for the image */
+}
+
+/* Container for the product information */
+.product-info {
+    flex: 1; /* Allows the info section to expand and fill available space */
+}
+
+/* Product title styling */
+h2 {
+    font-size: 24px; /* Size of the product title text */
+    color: #333; /* Dark gray color for the title */
+}
+
+/* Quality description styling */
+.quality {
+    font-size: 16px; /* Size of the quality text */
+    color: #444; /* Slightly lighter gray than the title */
+}
+
+/* Section containing pricing information */
+.price-section {
+    margin: 10px 0; /* Vertical spacing around the price section */
+}
+
+/* Styling for the original price text */
+.original-price {
+    text-decoration: line-through; /* Strikes through the original price */
+    color: #888; /* Gray color indicating a previous price */
+}
+
+/* Styling for the discounted price text */
+.discounted-price {
+    color: #28a745; /* Green color indicating a discount */
+    font-size: 22px; /* Larger font size for emphasis */
+    font-weight: bold; /* Bold text for prominence */
+}
+
+/* Styling for the discount percentage or amount */
+.discount {
+    color: red; /* Red color to highlight the discount */
+    font-size: 16px; /* Size of the discount text */
+    font-weight: bold; /* Bold text for emphasis */
+}
+
+/* Styling for the quantity information */
+.quantity {
+    font-size: 14px; /* Size of the quantity text */
+    color: #555; /* Medium gray color */
+}
+
+/* Container for action buttons like 'Buy Now' or 'Add to Favorites' */
+.action-buttons {
+    margin-top: 20px; /* Space above the action buttons */
+}
+
+/* General button styling */
+.btn {
+    display: inline-block; /* Aligns buttons horizontally */
+    padding: 12px 15px; /* Inner spacing for buttons */
+    border-radius: 5px; /* Rounded corners for buttons */
+    text-decoration: none; /* Removes underline from links styled as buttons */
+    font-weight: bold; /* Bold text for buttons */
+    transition: 0.3s; /* Smooth transition effect for interactions */
+}
+
+/* Specific styling for the 'Buy Now' button */
+.buy-now {
+    background-color: #007bff; /* Blue background for the button */
+    color: white; /* White text color */
+}
+
+/* Specific styling for the 'Favorite' button */
+.favorite-btn {
+    background-color: #ff6b6b; /* Light red background for the button */
+    color: white; /* White text color */
+}
+
+/* Badge indicating a best-selling product */
+.best-seller {
+    display: inline-block; /* Aligns the badge inline with other elements */
+    background: #ff9800; /* Orange background for the badge */
+    color: white; /* White text color */
+    padding: 5px 10px; /* Inner spacing for the badge */
+    border-radius: 5px; /* Rounded corners for the badge */
+    font-weight: bold; /* Bold text for prominence */
+}
+
+/* Styling for the list of product reviews */
+.review-list {
+    list-style: none; /* Removes default list styling */
+    padding: 0; /* Removes default padding */
+}
+
+/* Styling for individual review items */
+.review-list li {
+    padding: 5px 0; /* Vertical spacing between reviews */
+    border-bottom: 1px solid #ddd; /* Light gray separator line */
+}

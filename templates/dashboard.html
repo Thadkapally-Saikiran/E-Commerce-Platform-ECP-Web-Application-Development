@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+<!-- Extending the base template to reuse common layout elements -->
+
+{% block title %}Dashboard - My Store{% endblock %}
+<!-- Overriding the title block to set the page title for the dashboard -->
+
+{% block head %}
+    <!-- Including dashboard-specific CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="dashboard-container">
+        <!-- Main Navigation Bar -->
+        <nav class="sub-nav">
+            <!-- Search bar input for filtering products -->
+            <input type="text" id="search-bar" placeholder="Search products...">
+            <div class="nav-links">
+                <!-- Link to Favorites, displaying count using favorites list length -->
+                <a href="{{ url_for('add_favorite') }}">❤️ Favorites ({{ favorites|length }})</a>
+                <!-- Link to Orders page -->
+                <a href="{{ url_for('add_order') }}">🛒 My Orders</a>
+                <!-- Link to Cart page -->
+                <a href="{{ url_for('cart') }}">🛍️ Cart</a>
+            </div>
+        </nav>
+
+        <!-- Dashboard Welcome Message -->
+        <h1>Welcome to My Store</h1>
+
+        <!-- Product Grid: container for displaying product cards in a responsive grid -->
+        <div class="product-grid">
+            {% for product in products %}
+            <!-- Looping through the list of products to create individual product cards -->
+            <div class="product-card">
+                <!-- Displaying the product image; using url_for to reference static image files -->
+                <img src="{{ url_for('static', filename=product.image.split('static/')[1]) }}" alt="{{ product.name }}">
+                
+                <!-- Check if the product is a best seller and display a badge if true -->
+                {% if product.best_seller %}
+                    <span class="best-seller">Best Seller</span>
+                {% endif %}
+                
+                <!-- Product Name -->
+                <h2>{{ product.name }}</h2>
+                <!-- Product Description -->
+                <p class="description">{{ product.description }}</p>
+                <!-- Product Quality Information -->
+                <p class="quality">Quality: {{ product.quality }}</p>
+                
+                <!-- Pricing Section -->
+                <div class="price-section">
+                    {% if product.discount > 0 %}
+                        <!-- If a discount is available, show the original price with strikethrough -->
+                        <p class="original-price">₹{{ product.price }}</p>
+                        <!-- Display discounted price calculated dynamically -->
+                        <p class="discounted-price">₹{{ '%.2f' | format(product.price - (product.price * product.discount / 100)) }}</p>
+                        <!-- Display discount percentage -->
+                        <p class="discount">-{{ product.discount }}% Off</p>
+                    {% else %}
+                        <!-- If no discount, display the final price -->
+                        <p class="final-price">₹{{ product.price }}</p>
+                    {% endif %}
+                </div>
+                
+                <!-- Display available quantity of the product -->
+                <p class="quantity">Available: {{ product.quantity }} in stock</p>
+
+                <!-- Action Buttons: Links for viewing product details and adding to favorites -->
+                <div class="actions">
+                    <!-- Button for product details -->
+                    <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn details-btn">View Details</a>
+                    <!-- Button to add product to favorites -->
+                    <a href="{{ url_for('add_favorite', product_id=product.id) }}" class="btn favorite-btn">Add to Favorites</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

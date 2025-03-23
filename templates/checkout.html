@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+{% endblock %}
+{% block content %}
+<div class="checkout-container">
+    <h2>Checkout</h2>
+    <!-- Display the product name -->
+    <h3>Buying: {{ product.name }}</h3>
+    <!-- Calculate the discounted unit price -->
+    {% set discounted_price = product.price - (product.price * product.discount / 100) %}
+    <h3>Unit Price: ₹{{ '%.2f'|format(discounted_price) }}</h3>
+    <!-- Display the quantity passed from the cart (default is 1 if not specified) -->
+    <h3>Quantity: {{ quantity }}</h3>
+    <!-- Calculate and display the total price based on quantity -->
+    <h3>Total Price: ₹{{ '%.2f'|format(discounted_price * quantity) }}</h3>
+    
+    <!-- Shipping Details Form -->
+    <form method="POST" class="checkout-form">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" placeholder="Street, Apartment, etc." required>
+        
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+        
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" required>
+        
+        <label for="pin">PIN Code:</label>
+        <input type="text" id="pin" name="pin" required>
+        
+        <button type="submit" class="btn">Proceed to Order</button>
+    </form>
+</div>
+{% endblock %}

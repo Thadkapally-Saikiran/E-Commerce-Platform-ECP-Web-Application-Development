@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 
+        The title block allows child templates to override the page title.
+        If not overridden, it defaults to "E-Commerce".
+    -->
+    <title>{% block title %}E-Commerce{% endblock %}</title>
+    
+    <!-- Global CSS: This stylesheet applies to all pages -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Font Awesome: Provides icons throughout the website -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 
+        Additional head elements can be added in child templates by overriding the "head" block.
+    -->
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+    <!-- Navigation Bar: This includes the navbar from a separate template file -->
+    {% include 'navbar.html' %}
+
+    <!-- Main Content Container: 
+         Child templates will populate the content block here -->
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer: This includes the footer from a separate template file -->
+    {% include 'footer.html' %}
+
+</body>
+</html>

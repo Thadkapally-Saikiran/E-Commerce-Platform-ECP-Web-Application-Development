@@ -1,0 +1,25 @@
+# Razorpay API Credentials:
+# "keyid" specifies the Razorpay test API key ID used for authenticating API requests 
+# in a test environment.
+keyid: rzp_test_EA3moDl0MToqtw
+
+# "key secret" is the Razorpay test API secret used for secure communication with 
+# Razorpay's servers.
+key secret: CspmisUE4umHO4OLcyUl7Qul
+
+# The following commands install required Python packages:
+
+# Install jaraco.text:
+# This package provides text manipulation utilities that might be used internally or by 
+# other libraries.
+pip install jaraco.text
+
+# Install platformdirs:
+# This package helps determine platform-specific directories, which can be useful for 
+# managing application data and configurations.
+pip install platformdirs
+
+# Install razorpay:
+# This is the Razorpay Python client library that allows you to interact with the Razorpay 
+# API for payment processing.
+pip install razorpay

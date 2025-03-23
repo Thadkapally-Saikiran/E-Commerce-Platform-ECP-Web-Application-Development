@@ -1,0 +1,40 @@
+/* Container for the payment success message */
+.success-container {
+    max-width: 600px;               /* Limits container width to 600px */
+    margin: 50px auto;              /* Centers the container and adds vertical margin */
+    text-align: center;             /* Centers the text inside the container */
+    background: #f8f9fa;            /* Light background color for a soft look */
+    padding: 30px;                  /* Adds space inside the container */
+    border-radius: 10px;            /* Rounds the corners of the container */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Adds a subtle shadow for depth */
+}
+
+/* Styling for the heading inside the success container */
+.success-container h2 {
+    color: #28a745;                /* Green text to indicate success */
+    font-size: 24px;               /* Sets a clear, readable font size */
+    margin-bottom: 15px;           /* Space below the heading for visual separation */
+}
+
+/* Styling for paragraphs in the success container */
+.success-container p {
+    font-size: 18px;               /* Font size for readability */
+    color: #333;                   /* Dark gray text color */
+    margin-bottom: 10px;           /* Adds space below each paragraph */
+}
+
+/* General button styling */
+.btn {
+    display: inline-block;         /* Allows width, height, and padding to be set */
+    padding: 10px 20px;            /* Adds padding for a clickable area */
+    margin-top: 20px;              /* Space above the button */
+    background-color: #007bff;     /* Blue background color */
+    color: white;                  /* White text for contrast */
+    text-decoration: none;         /* Removes underline from text */
+    border-radius: 5px;            /* Rounds the corners of the button */
+}
+
+/* Hover effect for buttons */
+.btn:hover {
+    background-color: #0056b3;     /* Darker blue background when hovered */
+}

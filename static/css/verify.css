@@ -1,0 +1,75 @@
+/* OTP Page Styling */
+/* Container for the OTP page; centers the content with a maximum width and adds styling */
+.otp-container {
+    max-width: 350px;                      /* Limits the width to 350px */
+    margin: 50px auto;                     /* 50px margin on top and bottom; auto centers horizontally */
+    padding: 30px;                         /* Adds internal spacing of 30px */
+    background: white;                      /* White background */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 8px;                     /* Rounds the corners by 8px */
+    text-align: center;                     /* Centers text within the container */
+}
+
+/* Styling for the heading inside the OTP container */
+.otp-container h2 {
+    margin-bottom: 15px;                   /* Space below the heading */
+    color: #333;                           /* Dark gray color for the heading text */
+}
+
+/* Error Message Styling */
+/* Styles error messages to be bold and noticeable */
+.error-msg {
+    color: red;                            /* Red text to indicate an error */
+    font-size: 14px;                       /* Font size set to 14px */
+    background: #ffe5e5;                   /* Light red background for error emphasis */
+    padding: 10px;                         /* Padding inside the error message box */
+    border-radius: 5px;                    /* Rounded corners for the error message */
+    margin-bottom: 15px;                   /* Space below the error message */
+}
+
+/* Form Styling */
+/* Styles the OTP form to be laid out in a vertical column with consistent spacing */
+.otp-form {
+    display: flex;                         /* Uses flexbox layout for the form */
+    flex-direction: column;                /* Stacks form elements vertically */
+    gap: 15px;                             /* Adds 15px space between each form element */
+}
+
+/* Styling for form labels in the OTP form */
+.otp-form label {
+    text-align: left;                      /* Aligns labels to the left */
+    font-weight: bold;                     /* Makes label text bold */
+    color: #444;                           /* Sets a dark gray color for labels */
+}
+
+/* Styling for input fields in the OTP form */
+.otp-form input {
+    width: 100%;                           /* Input fields take full width of the container */
+    padding: 10px;                         /* Adds padding inside input fields */
+    border: 1px solid #ddd;                /* Light gray border around input fields */
+    border-radius: 5px;                    /* Rounds the corners of input fields */
+    font-size: 16px;                       /* Sets font size to 16px for better readability */
+}
+
+/* Input focus state for OTP form */
+.otp-form input:focus {
+    border-color: #ff6b6b;                 /* Changes border color to red on focus */
+    outline: none;                         /* Removes default browser outline */
+}
+
+/* Button Styling */
+/* General styling for buttons on the OTP page */
+.btn {
+    background: #ff6b6b;                   /* Red background for the button */
+    color: white;                          /* White text on the button */
+    padding: 10px;                         /* Padding inside the button */
+    border: none;                          /* Removes default border */
+    border-radius: 5px;                     /* Rounds the button corners */
+    font-size: 16px;                        /* Sets font size to 16px */
+    cursor: pointer;                        /* Changes cursor to pointer on hover */
+}
+
+/* Hover state for buttons */
+.btn:hover {
+    background: #e05454;                   /* Darker red background when hovered */
+}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+<!-- Extends the base template to reuse common layout elements like header, footer, and global CSS/JS -->
+
+{% block head %}
+    <!-- 
+         Overrides the head block to include additional styles for the login page.
+         This links to the login.css stylesheet located in the static/css folder.
+    -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Main content block for the login page -->
+<div class="login-container">
+    <h2>Login</h2>
+    
+    <!-- 
+         Conditionally display an error message if the 'error' parameter exists in the URL query string.
+         The message is styled using the "error-msg" class.
+    -->
+    {% if request.args.get('error') %}
+        <p class="error-msg">{{ request.args.get('error') }}</p>
+    {% endif %}
+
+    <!-- 
+         Login form using the POST method for submitting credentials.
+         The form has a class "login-form" to apply specific styles.
+    -->
+    <form method="post" class="login-form">
+        <!-- Email field with label; the "required" attribute ensures the field must be filled -->
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+
+        <!-- Password field with label; type "password" hides the input -->
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required>
+
+        <!-- Submit button to trigger login; styled with the "btn" class -->
+        <button type="submit" class="btn">Login</button>
+
+        <!-- 
+             Extra navigation links for account creation and password recovery.
+             The links are dynamically generated using url_for() to ensure correct routing.
+        -->
+        <div class="extra-links">
+            <a href="{{ url_for('register') }}">Create an account</a>
+            <a href="{{ url_for('forgotpassword') }}">Forgot password?</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

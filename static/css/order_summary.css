@@ -1,0 +1,60 @@
+/* Container for the order summary page */
+.order-container {
+    max-width: 600px;                      /* Limit the container width to 600px */
+    margin: 40px auto;                     /* Center the container horizontally with 40px top/bottom margin */
+    padding: 20px;                         /* Add padding inside the container */
+    background: #fff;                      /* White background */
+    border-radius: 10px;                   /* Rounded corners with a 10px radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center;                    /* Center-align text inside the container */
+}
+
+/* Styling for headings within the order container */
+.order-container h2 {
+    color: #333;                           /* Dark grey text color for headings */
+    margin-bottom: 20px;                   /* Space below the heading */
+}
+
+/* Styling for paragraphs inside the order details section */
+.order-details p {
+    font-size: 16px;                       /* Set font size to 16px */
+    margin: 8px 0;                         /* 8px margin on top and bottom, 0 on sides */
+    color: #555;                           /* Medium grey text color for details */
+}
+
+/* Styling for strong elements within order details (e.g., labels or emphasized text) */
+.order-details strong {
+    color: #000;                           /* Black color for strong emphasis */
+}
+
+/* Status styling for order status labels */
+.status {
+    font-weight: bold;                     /* Bold text for visibility */
+    padding: 5px 10px;                     /* Padding for better spacing */
+    border-radius: 5px;                    /* Rounded corners for the status badge */
+}
+
+/* Specific color styles for various order statuses */
+.processing { color: #ff9800; }             /* Orange for processing status */
+.shipped { color: #2196f3; }                /* Blue for shipped status */
+.out-for-delivery { color: #4caf50; }         /* Green for out-for-delivery status */
+.delivered { color: #388e3c; }               /* Darker green for delivered status */
+.returned { color: #f44336; }                /* Red for returned status */
+.cancelled { color: #9e9e9e; }               /* Grey for cancelled status */
+
+/* Styling for buttons on the order summary page */
+.btn {
+    display: inline-block;                 /* Display as inline block to allow padding and margins */
+    background: #007bff;                     /* Blue background for the button */
+    color: #fff;                           /* White text color */
+    padding: 10px 15px;                    /* Padding inside the button */
+    margin-top: 20px;                      /* Space above the button */
+    text-decoration: none;                 /* Remove underline from the button text */
+    border-radius: 5px;                    /* Rounded corners for the button */
+    transition: 0.3s;                      /* Smooth transition for hover effects */
+}
+
+/* Hover state styling for buttons */
+.btn:hover {
+    background: #0056b3;                   /* Darker blue background on hover */
+}

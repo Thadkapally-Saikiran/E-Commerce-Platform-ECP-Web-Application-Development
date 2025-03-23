@@ -1,0 +1,89 @@
+/* Styling for the main login container */
+.login-container {
+    max-width: 400px;               /* Limit the container's maximum width to 400px */
+    margin: 50px auto;              /* 50px margin on top and bottom, centered horizontally */
+    padding: 30px;                  /* Internal spacing of 30px */
+    background: white;              /* White background color */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+    border-radius: 8px;             /* Rounded corners with an 8px radius */
+    text-align: center;             /* Center-align text within the container */
+}
+
+/* Styling for the login header (h2) */
+.login-container h2 {
+    margin-bottom: 15px;            /* Space below the heading */
+    color: #333;                    /* Dark gray text color */
+}
+
+/* Styling for error messages on the login page */
+.error-msg {
+    color: red;                     /* Red text to indicate an error */
+    font-size: 14px;                /* Font size of 14px */
+    background: #ffe5e5;            /* Light red/pink background for error highlight */
+    padding: 10px;                  /* Padding inside the error message */
+    border-radius: 5px;             /* Rounded corners for the error message */
+    margin-bottom: 15px;            /* Space below the error message */
+}
+
+/* Styling for the login form container */
+.login-form {
+    display: flex;                  /* Use flexbox layout */
+    flex-direction: column;         /* Arrange form elements vertically */
+    gap: 15px;                      /* 15px gap between form elements */
+}
+
+/* Styling for form labels within the login form */
+.login-form label {
+    text-align: left;               /* Left-align the label text */
+    font-weight: bold;              /* Bold text for better visibility */
+    color: #444;                    /* Medium dark gray text color */
+}
+
+/* Styling for input fields in the login form */
+.login-form input {
+    width: 100%;                    /* Input fields take full width of the container */
+    padding: 10px;                  /* Padding inside the input fields */
+    border: 1px solid #ddd;         /* Light gray border for inputs */
+    border-radius: 5px;             /* Rounded corners for inputs */
+}
+
+/* Focus state styling for input fields */
+.login-form input:focus {
+    border-color: #ff6b6b;          /* Change border color to red when focused */
+    outline: none;                  /* Remove the default browser outline */
+}
+
+/* Styling for buttons */
+.btn {
+    background: #ff6b6b;            /* Red background for the button */
+    color: white;                   /* White text color */
+    padding: 10px;                  /* Padding inside the button */
+    border: none;                   /* Remove default border */
+    border-radius: 5px;             /* Rounded corners for the button */
+    font-size: 16px;                /* Set font size to 16px */
+    cursor: pointer;                /* Cursor changes to pointer on hover */
+}
+
+/* Hover state styling for buttons */
+.btn:hover {
+    background: #e05454;            /* Darker red background on hover */
+}
+
+/* Styling for extra links (e.g., register, forgot password) */
+.extra-links {
+    display: flex;                  /* Use flexbox for layout */
+    justify-content: space-between; /* Space links evenly between left and right */
+    margin-top: 10px;               /* Margin above the links */
+}
+
+/* Styling for individual links within the extra-links container */
+.extra-links a {
+    font-size: 14px;                /* Font size for the links */
+    color: #ff6b6b;                /* Red color for the links */
+    text-decoration: none;          /* Remove underline from the links */
+}
+
+/* Hover state styling for extra links */
+.extra-links a:hover {
+    text-decoration: underline;     /* Underline the links on hover for clarity */
+}
