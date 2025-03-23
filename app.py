@@ -493,8 +493,8 @@ def contact():
 
 # Run the Flask application on port 6002 in debug mode
 if __name__ == "__main__":
-    app.run(port=6002, debug=True)
+    app.run(port=5000, debug=True)
     # import os
-    # port = int(os.environ.get("PORT", 6002))
+    # port = int(os.environ.get("PORT", 5000))
     # app.run(host="0.0.0.0", port=port, debug=True)
 
