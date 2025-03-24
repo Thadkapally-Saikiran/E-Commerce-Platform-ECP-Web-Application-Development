@@ -1,83 +1,95 @@
 {% extends "base.html" %}
-<!-- This template extends the base layout to reuse common elements (e.g., header, footer) -->
+<!-- 📄 This template extends the base layout 'base.html', allowing reuse of common elements like header, footer, navigation, etc. -->
 
 {% block head %}
-    <!-- Set the title of the page (this could override the base title if necessary) -->
+    <!-- 🧠 HEAD SECTION -->
+    <!-- 🏷️ Set the HTML title of the page; this appears in the browser tab -->
     <title>Payment</title>
     
-    <!-- Include the Razorpay Checkout script from Razorpay's CDN -->
+    <!-- 💳 Razorpay Checkout Script -->
+    <!-- 🔗 Include the official Razorpay checkout script via CDN to enable payment processing -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     
-    <!-- Link to the page-specific CSS file for payment page styling -->
+    <!-- 🎨 Link to external CSS for page-specific payment styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/payment.css') }}">
 {% endblock %}
 
 {% block content %}
-<!-- Main container for the payment section -->
+<!-- 🧾 MAIN CONTENT SECTION -->
+
+<!-- 🧱 Container for the payment section (styled via CSS) -->
 <div class="payment-container">
-    <!-- Heading for the payment page -->
+    <!-- 🧾 Page heading for payment confirmation -->
     <h2>Confirm Your Payment</h2>
     
-    <!-- Display product details dynamically -->
-    <p><strong>Product:</strong> {{ product.name }}</p>
-    <p><strong>Quantity:</strong> {{ order.quantity }}</p>
-    <!-- Display final total price from the orders table -->
-    <p><strong>Total Price:</strong> ₹{{ '%.2f'|format(order.total_price) }}</p>
-    <p><strong>Shipping to:</strong> {{ order.address }}</p>
+    <!-- 📦 Product information dynamically inserted using Jinja2 variables -->
+    <p><strong>📦Product:</strong> {{ product.name }}</p> <!-- 📦 Show product name -->
+    <p><strong>🔢Quantity:</strong> {{ order.quantity }}</p> <!-- 🔢 Show number of items -->
+    <p><strong>💰Total Price:</strong> ₹{{ '%.2f'|format(order.total_price) }}</p> <!-- 💰 Show formatted total price (2 decimals) -->
+    <p><strong>🏠Shipping to:</strong> {{ order.address }}</p> <!-- 🏠 Show delivery/shipping address -->
 
-    <!-- Button to trigger the payment process -->
-    <button id="rzp-button1" class="pay-btn">Pay Now</button>
+    <!-- 💸 Button to trigger payment process -->
+    <button id="rzp-button1" class="pay-btn">Pay Now</button> <!-- 🚀 User clicks this to open Razorpay modal -->
 </div>
 
-<!-- Payment processing script using Razorpay Checkout -->
+<!-- 💻 JAVASCRIPT BLOCK: Razorpay integration -->
 <script>
-    // Options for the Razorpay checkout
+    // ⚙️ Define configuration options for Razorpay Checkout modal
     var options = {
-        "key": "{{ razorpay_key }}",  // Razorpay API key provided by the backend
-        // Use the order's total_price for the amount in paise:
+        "key": "{{ razorpay_key }}",  // 🔑 Razorpay public API key from backend (used to authenticate frontend)
+        
+        // 💰 Transaction amount in paise (multiply by 100 because Razorpay uses smallest currency unit)
         "amount": "{{ (order.total_price * 100)|int }}",  
-        "currency": "INR",            
-        "name": "My Store",           
-        // Description with product name and quantity
+        
+        "currency": "INR",            // 🇮🇳 Set currency to Indian Rupees
+        
+        "name": "My Store",           // 🏪 Business or brand name shown in the Razorpay modal
+        
         "description": "Purchase of {{ product.name }} x {{ order.quantity }}",  
+        // 📝 Transaction description shown in modal (e.g., "Purchase of Smartphone x 2")
+        
         "order_id": "{{ razorpay_order_id }}",  
-        "handler": function (response) {
-            // This callback function is executed after a successful payment
-            var orderId = "{{ order.id }}";  // Retrieve the order id from the backend
-            // Create a form element to post payment details to the server for verification
-            var form = document.createElement("form");
-            form.method = "POST";
-            form.action = "/payment_success/" + orderId;
+        // 📦 Unique Razorpay order ID generated on the backend to link frontend with backend
 
-            // Prepare payment details to be sent in the form
+        "handler": function (response) {
+            // 🧩 Callback function executed after a successful Razorpay payment
+            
+            var orderId = "{{ order.id }}";  // 🆔 Capture current order ID for reference
+            
+            // 📝 Create a new <form> element dynamically to send payment details to backend securely
+            var form = document.createElement("form");
+            form.method = "POST";            // 📮 Use POST method to avoid exposing data in URL
+            form.action = "/payment_success/" + orderId;  // 📍 Endpoint that handles successful payments
+
+            // 📤 Prepare key Razorpay payment details to be sent
             var inputs = {
-                "razorpay_payment_id": response.razorpay_payment_id,
-                "razorpay_order_id": response.razorpay_order_id,
-                "razorpay_signature": response.razorpay_signature
+                "razorpay_payment_id": response.razorpay_payment_id,     // 🧾 Unique payment ID
+                "razorpay_order_id": response.razorpay_order_id,         // 🔁 Order ID matched with backend
+                "razorpay_signature": response.razorpay_signature        // 🔏 Signature used to verify payment integrity
             };
 
-            // Dynamically create hidden input fields for each payment detail
+            // 🔒 Loop through each key-value pair to generate hidden input fields in the form
             for (var key in inputs) {
-                var input = document.createElement("input");
-                input.type = "hidden";
-                input.name = key;
-                input.value = inputs[key];
-                form.appendChild(input);
+                var input = document.createElement("input"); // 🧱 Create <input> element
+                input.type = "hidden";                        // 🙈 Hide input from UI
+                input.name = key;                             // 🏷️ Assign name to input
+                input.value = inputs[key];                    // 💾 Assign actual value
+                form.appendChild(input);                      // ➕ Add input to the form
             }
 
-            // Append the form to the document body and submit it
-            document.body.appendChild(form);
-            form.submit();
+            // 📦 Add form to the document body and auto-submit it to backend
+            document.body.appendChild(form);  // 🏗️ Append form to DOM
+            form.submit();                    // 🚀 Automatically submit to server for final verification
         }
     };
 
-    // Create a new Razorpay instance with the specified options
+    // 🆕 Create Razorpay instance using defined options
     var rzp1 = new Razorpay(options);
     
-    // Attach an event listener to the "Pay Now" button to open the Razorpay checkout
+    // 🧠 Attach a click event to the "Pay Now" button
     document.getElementById('rzp-button1').onclick = function(e) {
-        rzp1.open();  // Open the payment modal
-        e.preventDefault();  // Prevent default button behavior (if any)
+        rzp1.open();  // 🪟 Open Razorpay payment popup/modal
+        e.preventDefault();  // 🚫 Prevent default form submission or page reload
     }
 </script>
 {% endblock %}

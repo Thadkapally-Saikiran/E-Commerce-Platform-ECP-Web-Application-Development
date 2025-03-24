@@ -1,76 +1,89 @@
+/* 🧺 Main container for the favorites page */
 .favorites-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-align: center;
+    max-width: 1000px; /* 📏 Restricts the container’s width to 1000px for readability */
+    margin: 40px auto; /* 🎯 Adds vertical spacing and centers it horizontally using auto margins */
+    padding: 20px; /* 📦 Adds internal spacing so content doesn’t touch the edges */
+    background: #fff; /* 🎨 White background for a clean and minimalistic look */
+    border-radius: 8px; /* 🌀 Smoothly rounded corners for a modern visual */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* 🌫️ Light shadow to lift the container off the background */
+    text-align: center; /* 📍 Centers all inline content inside the container */
 }
 
+/* 🧱 Grid layout to organize favorite cards responsively */
 .favorites-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+    display: grid; /* 🧮 Enables CSS Grid for layout management */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 🧩 Creates as many columns as fit, each minimum 220px wide */
+    gap: 20px; /* 📏 Adds spacing between the cards */
+    margin-top: 20px; /* ⬆️ Adds vertical spacing from the element above */
 }
 
+/* 💳 Card styling for individual favorite items */
 .favorite-card {
-    background: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
+    background: #f8f9fa; /* 🎨 Very light gray background for softness */
+    border: 1px solid #ddd; /* 🪟 Light gray border for subtle separation */
+    border-radius: 8px; /* 🌀 Rounded corners match the container’s style */
+    padding: 15px; /* 📦 Internal spacing for better layout inside the card */
+    text-align: center; /* 📍 Centers all content in the card */
 }
 
+/* 🖼️ Image inside each favorite card */
 .favorite-card img {
-    width: 100%;
-    max-height: 180px;
-    object-fit: cover;
-    border-radius: 5px;
+    width: 100%; /* 📏 Makes image span the full width of the card */
+    max-height: 180px; /* 🧱 Prevents image from being too tall */
+    object-fit: cover; /* 🧩 Ensures the image fills the space without distortion */
+    border-radius: 5px; /* 🌀 Slightly rounded corners for a clean look */
 }
 
+/* ⚙️ Action button section inside each card */
 .actions {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    justify-content: center;
+    margin-top: 10px; /* ⬆️ Space between image/details and buttons */
+    display: flex; /* 🧱 Flexbox used for arranging buttons in a row */
+    flex-wrap: wrap; /* 📦 Allows buttons to wrap onto new lines if needed */
+    gap: 5px; /* 📏 Adds spacing between each button */
+    justify-content: center; /* 📍 Centers buttons horizontally */
 }
 
+/* 🔘 Generic button styling */
 .btn {
-    padding: 8px 12px;
-    background: #007bff;
-    color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: 0.3s;
+    padding: 8px 12px; /* 📦 Internal spacing for clickability */
+    background: #007bff; /* 🔵 Default blue background (Bootstrap primary color) */
+    color: #fff; /* ⚪ White text for contrast and readability */
+    border-radius: 5px; /* 🌀 Slightly rounded corners for modern style */
+    text-decoration: none; /* 🚫 Removes underline from anchor-style buttons */
+    transition: 0.3s; /* ✨ Smooth transition for hover effects */
 }
 
+/* 🖱️ Hover effect for standard buttons */
 .btn:hover {
-    background: #0056b3;
+    background: #0056b3; /* 🔵 Darker blue shade on hover for interactivity feedback */
 }
 
+/* 🛍️ Buy now button – styled green for positivity */
 .buy-now {
-    background: #28a745;
+    background: #28a745; /* 🟢 Green background to signal action and positivity */
 }
 
+/* 🖱️ Hover effect for buy now button */
 .buy-now:hover {
-    background: #218838;
+    background: #218838; /* 🟢 Slightly darker green on hover for depth */
 }
 
+/* ❌ Remove from favorites button – red for deletion */
 .remove-btn {
-    background: #dc3545;
+    background: #dc3545; /* 🔴 Bright red to indicate removal or destructive action */
 }
 
+/* 🖱️ Hover effect for remove button */
 .remove-btn:hover {
-    background: #c82333;
+    background: #c82333; /* 🔴 Darker red on hover for emphasis */
 }
 
+/* ⬅️ Back button – muted gray */
 .back-btn {
-    background: #6c757d;
+    background: #6c757d; /* ⚫ Gray background for neutral navigation button */
 }
 
+/* 🖱️ Hover effect for back button */
 .back-btn:hover {
-    background: #5a6268;
+    background: #5a6268; /* ⚫ Slightly darker gray for interaction feedback */
 }

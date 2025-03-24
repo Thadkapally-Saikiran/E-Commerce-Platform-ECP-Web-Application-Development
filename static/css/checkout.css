@@ -1,53 +1,105 @@
-/* Styling for the checkout container */
+/* 🌟 Container for the entire checkout form - stylish and modern look */
 .checkout-container {
-    max-width: 600px;               /* Limit the width to 600px */
-    margin: auto;                   /* Center the container horizontally */
-    padding: 20px;                  /* Add padding inside the container */
-    background: #fff;               /* Set background color to white */
-    border-radius: 8px;             /* Round the corners */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Apply a subtle shadow */
-    margin-top: 20px;               /* Space above the container */
-    margin-bottom: 20px;            /* Space below the container */
+    max-width: 600px; /* Limits the maximum width of the form container to keep it compact and centered */
+    margin: 40px auto; /* Adds 40px space at top and bottom, and centers it horizontally */
+    padding: 30px; /* Adds 30px internal space around the content inside the container */
+    background: linear-gradient(135deg, #f0f8ff, #e0f7fa); /* Applies a soft diagonal gradient background for a calming effect */
+    border-radius: 16px; /* Smoothly rounds the corners of the container for a card-like appearance */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Adds depth by casting a soft shadow around the container */
+    transition: transform 0.3s ease-in-out; /* Prepares a smooth scale animation on hover for interactivity */
 }
 
-/* Styling for headings within the checkout page */
+/* ✨ Slight bounce/scale effect on hover */
+.checkout-container:hover {
+    transform: scale(1.01); /* Slightly enlarges the container when hovered for a playful bounce effect */
+}
+
+/* 🛒 Header text styles for checkout */
 h2, h3 {
-    text-align: center;             /* Center-align the text */
-    color: #333;                    /* Use a dark grey color for the text */
+    text-align: center; /* Aligns all headings to the center of the container */
+    color: #0d47a1; /* Sets a strong deep blue color for good contrast and brand consistency */
+    font-family: 'Segoe UI', sans-serif; /* Uses a clean, modern sans-serif font for readability */
+    margin-bottom: 10px; /* Adds space below each heading to visually separate them */
 }
 
-/* Layout for the checkout form */
+/* 🧾 Form layout using flexbox to stack inputs */
 .checkout-form {
-    display: flex;                  /* Use flexbox for layout */
-    flex-direction: column;         /* Stack child elements vertically */
+    display: flex; /* Enables Flexbox layout for child elements */
+    flex-direction: column; /* Stacks input fields vertically */
+    gap: 15px; /* Adds 15px vertical space between form elements for better readability */
 }
 
-/* Style for labels within the checkout form */
+/* 🏷️ Label styling with emoji and subtle color */
 .checkout-form label {
-    margin-top: 10px;               /* Space above each label */
-    font-weight: bold;              /* Make the label text bold */
+    font-weight: 600; /* Makes labels semi-bold for stronger emphasis */
+    color: #333; /* Sets a dark grey color for better visibility on light backgrounds */
+    margin-top: 5px; /* Adds a small top margin to separate labels from above content */
+    font-size: 14px; /* Sets a medium readable font size */
 }
 
-/* Style for input fields in the checkout form */
+/* ✍️ Input fields - soft shadows and clean UI */
 .checkout-form input {
-    padding: 8px;                   /* Add padding inside the input fields */
-    margin-top: 5px;                /* Space between input fields and labels */
-    border: 1px solid #ccc;         /* Light grey border */
-    border-radius: 5px;             /* Round the corners of the input fields */
+    padding: 10px 12px; /* Adds vertical and horizontal padding inside input fields for comfort */
+    border: 1px solid #90caf9; /* Sets a subtle light blue border for a soft UI */
+    border-radius: 8px; /* Rounds the input fields slightly for a friendly design */
+    font-size: 14px; /* Uses a readable and consistent input font size */
+    outline: none; /* Removes the default browser focus outline for a custom style */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for focus and hover states */
 }
 
-/* Styling for buttons */
+/* 🖱️ Focus effect on input to guide user */
+.checkout-form input:focus {
+    border-color: #42a5f5; /* Changes border to a brighter blue when user clicks on input */
+    box-shadow: 0 0 6px rgba(66, 165, 245, 0.4); /* Adds a subtle glow to indicate focus visually */
+}
+
+/* ✅ Primary button (e.g. "Place Order") */
 .btn {
-    margin-top: 20px;               /* Space above the button */
-    padding: 10px;                  /* Padding inside the button */
-    background: #28a745;            /* Green background color */
-    color: white;                   /* White text color */
-    border: none;                   /* Remove the default border */
-    border-radius: 5px;             /* Round the corners */
-    cursor: pointer;                /* Change cursor to pointer on hover */
+    margin-top: 25px; /* Adds space above the button to separate it from form fields */
+    padding: 12px; /* Internal padding for better button size */
+    background: linear-gradient(to right, #43cea2, #185a9d); /* Gradient from green to blue for an eye-catching CTA */
+    color: white; /* White text for contrast against colored background */
+    font-weight: bold; /* Makes the text bold for emphasis */
+    font-size: 16px; /* Sets a larger font size to highlight its importance */
+    border: none; /* Removes default button border */
+    border-radius: 50px; /* Makes the button fully rounded for a soft, modern look */
+    cursor: pointer; /* Changes the cursor to pointer to show it's clickable */
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out; /* Smooth animations for background and slight movement */
 }
 
-/* Hover effect for buttons */
+/* 🎯 Hover effect for button - makes it pop */
 .btn:hover {
-    background: #218838;            /* Darker green background on hover */
+    background: linear-gradient(to right, #2bc0e4, #eaecc6); /* Changes gradient to a lighter, refreshing palette on hover */
+    color: #000; /* Changes text color to black for contrast against the new background */
+    transform: translateY(-2px); /* Slightly lifts the button on hover for a tactile feel */
+}
+
+/* 🎉 Add subtle animations on page load */
+@keyframes fadeInUp {
+    from {
+        opacity: 0; /* Start fully transparent */
+        transform: translateY(20px); /* Start 20px lower */
+    }
+    to {
+        opacity: 1; /* End fully visible */
+        transform: translateY(0); /* End at original position */
+    }
+}
+
+/* ⏳ Animate the container when it appears */
+.checkout-container {
+    animation: fadeInUp 0.6s ease-in-out; /* Applies the fadeInUp animation on load for smooth entrance */
+}
+
+/* 🌈 Responsive - for smaller devices */
+@media screen and (max-width: 600px) {
+    .checkout-container {
+        padding: 20px; /* Reduces padding on small screens for better fit */
+        border-radius: 12px; /* Slightly less rounded corners for tighter spaces */
+    }
+
+    .btn {
+        font-size: 14px; /* Slightly smaller text on buttons to fit mobile layout */
+        padding: 10px; /* Adjusts padding to make the button compact on small screens */
+    }
 }

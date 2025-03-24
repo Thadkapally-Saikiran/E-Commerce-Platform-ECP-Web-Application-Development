@@ -1,61 +1,63 @@
-{% extends "base.html" %}
-{% block title %}About Us{% endblock %}
+{% extends "base.html" %} {# Extends the base layout template "base.html" to inherit its overall structure and styles #}
+
+{% block title %}About Us{% endblock %} {# Defines the content for the "title" block in the base template, setting the page title to "About Us" #}
 
 {% block head %}
     <!-- Optional dedicated CSS file for the About page -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
-{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}"> {# Links to a specific CSS file "about.css" located in the static/css directory, allowing for dedicated styles for the About page #}
+{% endblock %} {# Ends the "head" block, which can include page-specific meta or link tags #}
 
 {% block content %}
-<div class="about-container">
-    <h1>About E-Shop</h1>
+<div class="about-container"> {# Container div for the entire content of the About Us page, which allows for styling and layout control #}
+    <h1>About E-Shop</h1> {# Main heading for the page, indicating the page is about E-Shop #}
 
     <!-- Hero Section / Banner -->
-    <div class="hero-section">
-        <img src="{{ url_for('static', filename='images/E-shop.webp') }}" alt="E-Shop Banner">
-        <div class="hero-text">
-            <h2>Welcome to E-Shop</h2>
-            <p>Your one-stop destination for all your shopping needs!</p>
-        </div>
-    </div>
+    <div class="hero-section"> {# Div for the hero section, typically a banner or large visual element at the top of the page #}
+        <img src="{{ url_for('static', filename='images/E-shop.webp') }}" alt="E-Shop Banner"> {# Displays an image for the banner, sourcing it from the static/images folder and providing alternative text for accessibility #}
+        <div class="hero-text"> {# Div that overlays or accompanies the banner image with text content #}
+            <h2>Welcome to E-Shop</h2> {# Secondary heading welcoming visitors to the E-Shop #}
+            <p>Your one-stop destination for all your shopping needs!</p> {# A paragraph providing a brief tagline or description about E-Shop #}
+        </div> {# End of hero-text div #}
+    </div> {# End of hero-section div #}
 
     <!-- Our Story -->
-    <div class="section">
-        <h2>Our Story</h2>
+    <div class="section"> {# A section div for grouping content related to "Our Story" #}
+        <h2>Our Story</h2> {# Heading for the "Our Story" section #}
         <p>
             Founded in 2025, E-Shop began with a mission to bring the best products 
             at unbeatable prices to customers worldwide. Over the years, we’ve 
             grown into a trusted name, offering an extensive range of electronics, 
             accessories, and more. We’re proud to serve millions of happy customers 
             who continue to choose E-Shop for their shopping needs.
-        </p>
-    </div>
+        </p> {# Paragraph detailing the history and growth of E-Shop, giving background information #}
+    </div> {# End of Our Story section div #}
 
     <!-- Mission and Vision -->
-    <div class="section">
-        <h2>Mission &amp; Vision</h2>
+    <div class="section"> {# A new section for the "Mission & Vision" content #}
+        <h2>Mission &amp; Vision</h2> {# Heading for the mission and vision section, using "&amp;" to represent an ampersand in HTML #}
         <p>
             Our mission is simple: to provide high-quality products and exceptional 
             customer service, making online shopping easy, affordable, and enjoyable.
             We envision a future where technology seamlessly connects people with 
             the items they love—at the click of a button.
-        </p>
-    </div>
+        </p> {# Paragraph describing the mission and vision of E-Shop, emphasizing service quality and user experience #}
+    </div> {# End of Mission and Vision section div #}
 
     <!-- Our Team -->
-    <div class="section">
-        <h2>Meet the Team</h2>
+    <div class="section"> {# A section for introducing the team behind E-Shop #}
+        <h2>Meet the Team</h2> {# Heading for the "Meet the Team" section #}
         <p>
             Our dedicated team of professionals works tirelessly to source the best 
             products, negotiate unbeatable deals, and ensure prompt deliveries. We 
             believe in putting customers first, so we’re always here to help with 
             any questions or concerns you may have.
-        </p>
-    </div>
+        </p> {# Paragraph providing an overview of the team, highlighting dedication and customer service #}
+    </div> {# End of Our Team section div #}
 
     <!-- Call-to-Action or Back to Dashboard/Home -->
-    <div class="cta-section">
-        <a href="{{ url_for('dashboard') }}" class="btn btn-success">Back to Dashboard</a>
-    </div>
-</div>
-{% endblock %}
+    <div class="cta-section"> {# A section for a call-to-action, typically used to encourage user engagement or navigation #}
+        <a href="{{ url_for('dashboard') }}" class="btn btn-success">Back to Dashboard</a> {# A styled link (button) that directs the user back to the dashboard page #}
+    </div> {# End of the CTA section div #}
+</div> {# End of the about-container div #}
+{% endblock %} {# Ends the "content" block which contains the main content of the About Us page #}
+

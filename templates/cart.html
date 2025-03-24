@@ -1,49 +1,60 @@
-{% extends 'base.html' %}
-{% block title %}My Cart{% endblock %}
+{% extends 'base.html' %} {# Inherit the structure and layout from the base template (base.html) #}
+
+{% block title %}My Cart{% endblock %} {# Define the "title" block; this sets the page title to "My Cart", which appears in the browser tab #}
+
 {% block head %}
+    {# Begin the head block to include page-specific metadata or styles #}
     <!-- You can create a new CSS file (cart.css) or add inline styles here -->
+    {# Link to a dedicated CSS stylesheet (cart.css) located in the static/css directory for styling the cart page #}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
-{% endblock %}
+{% endblock %} {# End of the head block #}
+
 {% block content %}
-<div class="cart-container">
-    <h2>My Cart</h2>
-    {% if items %}
-    <table class="cart-table">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price (Each)</th>
-                <th>Total Price</th>
-                <th>Actions</th>
+<div class="cart-container"> {# Main container div for the cart page content; useful for layout and styling #}
+    <h2>My Cart</h2> {# Heading for the cart page #}
+    {% if items %} {# Check if the "items" variable is not empty; i.e., there are items in the cart #}
+    <table class="cart-table"> {# Begin a table with class "cart-table" to display cart items in a structured format #}
+        <thead> {# Table header section for column titles #}
+            <tr> {# Table row for the header columns #}
+                <th>Product</th> {# Column header for product information (image and name) #}
+                <th>Quantity</th> {# Column header for the quantity of each product #}
+                <th>Price (Each)</th> {# Column header for the price of one unit of the product (after discount) #}
+                <th>Total Price</th> {# Column header for the total price of the product line (price × quantity) #}
+                <th>Actions</th> {# Column header for available actions (like delete or buy now) #}
             </tr>
         </thead>
-        <tbody>
-            {% for item in items %}
-            <tr>
-                <td>
+        <tbody> {# Begin the table body where individual cart items will be listed #}
+            {% for item in items %} {# Iterate over each item in the "items" list provided to the template #}
+            <tr> {# Start a new table row for the current cart item #}
+                <td> {# Table cell for product details (image and name) #}
+                    {# Display the product image. The image path is adjusted by splitting on 'static/' to get the correct relative path #}
                     <img src="{{ url_for('static', filename=item.image.split('static/')[1]) }}" alt="{{ item.name }}" width="50">
+                    {# Output the product name next to the image #}
                     {{ item.name }}
                 </td>
-                <td>{{ item.quantity }}</td>
-                <td>₹{{ '%.2f'|format(item.discounted_price) }}</td>
-                <td>₹{{ '%.2f'|format(item.total_price) }}</td>
-                <td>
+                <td>{{ item.quantity }}</td> {# Display the quantity of the current item in the cart #}
+                <td>₹{{ '%.2f'|format(item.discounted_price) }}</td> {# Format and display the discounted unit price with two decimals, prefixed with the rupee symbol (₹) #}
+                <td>₹{{ '%.2f'|format(item.total_price) }}</td> {# Format and display the total price for this item (discounted price multiplied by quantity) with two decimals, prefixed with ₹ #}
+                <td> {# Table cell for action buttons (Delete and Buy Now) #}
                     <!-- Delete button -->
+                    {# Link to the "delete_cart" route with the cart_id parameter; clicking this removes the item from the cart #}
                     <a href="{{ url_for('delete_cart', cart_id=item.cart_id) }}" class="btn delete-btn">Delete</a>
                     <!-- Buy Now button: Pass quantity to checkout -->
+                    {# Link to the "checkout" route with the product_id and a query parameter "quantity" set to the item's quantity; directs the user to checkout for that product #}
                     <a href="{{ url_for('checkout', product_id=item.product_id) }}?quantity={{ item.quantity }}" class="btn buy-now-btn">Buy Now</a>
                 </td>
             </tr>
-            {% endfor %}
+            {% endfor %} {# End of the loop iterating through cart items #}
         </tbody>
     </table>
-    <h3>Grand Total: ₹{{ '%.2f'|format(grand_total) }}</h3>
+    <h3>Grand Total: ₹{{ '%.2f'|format(grand_total) }}</h3> {# Display the grand total for all items in the cart, formatted to two decimal places and prefixed with ₹ #}
     <!-- Back to Dashboard button -->
+    {# Link to the dashboard route to allow the user to return to the main dashboard or product listing page #}
     <a href="{{ url_for('dashboard') }}" class="btn back-btn">Back to Dashboard</a>
-    {% else %}
-    <p>Your cart is empty.</p>
+    {% else %} {# Else condition: if "items" is empty, i.e., the cart is empty #}
+    <p>Your cart is empty.</p> {# Display a message indicating that the cart is empty #}
+    {# Provide a link back to the dashboard or product page so the user can browse products #}
     <a href="{{ url_for('dashboard') }}" class="btn back-btn">Back to Products</a>
-    {% endif %}
-</div>
-{% endblock %}
+    {% endif %} {# End of the if-else block checking for cart items #}
+</div> {# End of the cart-container div #}
+{% endblock %} {# End of the content block for the page #}

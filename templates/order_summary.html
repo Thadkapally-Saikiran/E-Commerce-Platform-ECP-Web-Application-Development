@@ -1,56 +1,58 @@
 {% extends "base.html" %}
-<!-- This template extends the base layout to reuse common elements like header, footer, and global styles -->
+<!-- 📦 This template inherits from base.html to reuse common layout elements like the header, footer, and global styles -->
 
 {% block head %}
-    <!-- Include the order summary page-specific stylesheet -->
+    <!-- 🎨 Include a custom stylesheet specific to the order summary page -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/order_summary.css') }}">
 {% endblock %}
 
 {% block content %}
-<!-- Main container for the order summary section -->
+<!-- 🧾 Main container for the order summary section -->
 <div class="order-container">
-    <h2>Order Summary</h2>
+    <!-- 🛍️ Main heading for the page -->
+    <h2>🧾 Order Summary</h2>
     
-    <!-- Order details container -->
+    <!-- 📦 Container holding all the order-related details -->
     <div class="order-details">
-        <!-- Display product name -->
-        <p><strong>Product:</strong> {{ product.name }}</p>
+        <!-- 🧸 Display the product name in bold with label -->
+        <p><strong>📦 Product:</strong> {{ product.name }}</p>
         
-        <!-- Calculate the unit price (in case you want to display how we arrived at the total).
-             Since order.total_price is the final total, we can derive unit price by dividing by order.quantity. -->
-        <p><strong>Unit Price:</strong> ₹{{ '%.2f'|format(order.total_price / order.quantity) }}</p>
+        <!-- 💲 Display unit price by calculating total price divided by quantity 
+             This helps show the per-item cost even if it's not directly stored -->
+        <p><strong>💲 Unit Price:</strong> ₹{{ '%.2f'|format(order.total_price / order.quantity) }}</p>
 
-        <!-- Display ordered quantity -->
-        <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+        <!-- 🔢 Show the quantity of products ordered -->
+        <p><strong>🔢 Quantity:</strong> {{ order.quantity }}</p>
         
-        <!-- Display total price of the order, stored in the orders table -->
-        <p><strong>Total Price:</strong> ₹{{ '%.2f'|format(order.total_price) }}</p>
+        <!-- 🧮 Show the total amount paid for the entire order -->
+        <p><strong>🧮 Total Price:</strong> ₹{{ '%.2f'|format(order.total_price) }}</p>
         
-        <!-- Display shipping address label and content -->
-        <p><strong>Shipping Address:</strong></p>
+        <!-- 🏠 Display the shipping address label -->
+        <p><strong>🏠 Shipping Address:</strong></p>
+        <!-- 📬 Show the actual shipping address entered by the user -->
         <p>{{ order.address }}</p>
         
-        <!-- Display order date -->
-        <p><strong>Order Date:</strong> {{ order.order_date }}</p>
+        <!-- 📅 Display the date when the order was placed -->
+        <p><strong>📅 Order Date:</strong> {{ order.order_date }}</p>
         
-        <!-- Display estimated delivery date -->
-        <p><strong>Estimated Delivery:</strong> {{ order.delivery_date }}</p>
+        <!-- 📦 Show the expected delivery date -->
+        <p><strong>🚚 Estimated Delivery:</strong> {{ order.delivery_date }}</p>
         
-        <!-- Display order status with a dynamic CSS class based on the status -->
+        <!-- 📌 Display current status of the order, styled by a dynamic class based on status -->
         <p>
-            <strong>Status:</strong>
+            <strong>📌 Status:</strong>
             <span class="status {{ order.status|lower }}">
                 {{ order.status }}
             </span>
         </p>
 
-        <!-- Conditionally display the tracking ID if available -->
+        <!-- 📦 Optional: Show tracking ID only if it's available (conditional rendering) -->
         {% if order.tracking_id %}
-        <p><strong>Tracking ID:</strong> {{ order.tracking_id }}</p>
+        <p><strong>📦 Tracking ID:</strong> {{ order.tracking_id }}</p>
         {% endif %}
 
-        <!-- Link to proceed to payment; uses dynamic URL generation with order_id -->
-        <a href="{{ url_for('payment', order_id=order.id) }}" class="btn">Proceed to Payment</a>
+        <!-- 💳 Button to navigate to the payment page using the order ID dynamically -->
+        <a href="{{ url_for('payment', order_id=order.id) }}" class="btn">💳 Proceed to Payment</a>
     </div>
 </div>
 {% endblock %}

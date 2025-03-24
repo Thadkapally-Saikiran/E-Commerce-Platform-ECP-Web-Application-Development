@@ -1,25 +1,25 @@
 {% extends "base.html" %}
-<!-- This template extends the base layout, reusing the common header, footer, and other shared elements -->
+<!-- 🧱 This template extends the base layout, meaning it inherits shared structure like header, footer, and possibly scripts/styles defined in "base.html" -->
 
 {% block head %}
-    <!-- Include the payment success page-specific stylesheet -->
+    <!-- 🎨 Load the stylesheet specific to the payment success page -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/payment_success.css') }}">
 {% endblock %}
 
 {% block content %}
-<!-- Main container for the payment success message -->
+<!-- 📦 Main container holding the entire payment success section -->
 <div class="success-container">
-    <!-- Heading for the success message with an emoji for added visual appeal -->
+    <!-- 🎊 Heading that expresses gratitude to the user after successful purchase -->
     <h2>Thank You for Your Purchase! 🎉</h2>
     
-    <!-- Paragraph displaying a confirmation message including the product name -->
-    <p>Your order for <strong>{{ product.name }}</strong> has been placed successfully.</p>
+    <!-- 📄 Paragraph that confirms the order was placed successfully, with the product name dynamically inserted -->
+    <p>Your order for <strong>{{ product.name }}</strong> has been placed successfully. ✅</p>
     
-    <!-- Paragraph displaying the shipping address dynamically from the order data -->
-    <p>It will be shipped to <strong>{{ order.address }}</strong>.</p>
+    <!-- 🏠 Paragraph that displays the shipping address, fetched dynamically from the order object -->
+    <p>It will be shipped to <strong>{{ order.address }}</strong>. 📦</p>
     
-    <!-- Button styled as a link to navigate back to the dashboard;
-         'btn' class likely inherits styles from global or Bootstrap CSS -->
-    <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+    <!-- 🧭 A styled link acting as a button that takes the user back to their dashboard (home or profile area) -->
+    <!-- 💡 'btn' class likely comes from Bootstrap or your own CSS and controls appearance -->
+    <a href="{{ url_for('dashboard') }}" class="btn">⬅️ Back to Dashboard</a>
 </div>
 {% endblock %}

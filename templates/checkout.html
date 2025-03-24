@@ -1,35 +1,55 @@
+{# 📄 Extend the base layout template to maintain consistent structure and styling #}
 {% extends "base.html" %}
+
 {% block head %}
+    <!-- 🎨 Link the external colorful checkout CSS file stored in the static folder -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
 {% endblock %}
+
 {% block content %}
+<!-- 🌟 Main container for the checkout section -->
 <div class="checkout-container">
-    <h2>Checkout</h2>
-    <!-- Display the product name -->
-    <h3>Buying: {{ product.name }}</h3>
-    <!-- Calculate the discounted unit price -->
+
+    <!-- 🛒 Checkout page title -->
+    <h2>🧾 Checkout</h2>
+
+    <!-- 🛍️ Display the product name dynamically using Jinja -->
+    <h3>🛍️ Buying: <span>{{ product.name }}</span></h3>
+
+    {# 💸 Calculate discounted price using the formula: price - (price * discount%) #}
     {% set discounted_price = product.price - (product.price * product.discount / 100) %}
-    <h3>Unit Price: ₹{{ '%.2f'|format(discounted_price) }}</h3>
-    <!-- Display the quantity passed from the cart (default is 1 if not specified) -->
-    <h3>Quantity: {{ quantity }}</h3>
-    <!-- Calculate and display the total price based on quantity -->
-    <h3>Total Price: ₹{{ '%.2f'|format(discounted_price * quantity) }}</h3>
-    
-    <!-- Shipping Details Form -->
+
+    <!-- 💲 Show the discounted unit price formatted to 2 decimal places -->
+    <h3>💲 Unit Price: ₹{{ '%.2f'|format(discounted_price) }}</h3>
+
+    <!-- 🔢 Display the selected quantity, which may come from the cart or default to 1 -->
+    <h3>🔢 Quantity: {{ quantity }}</h3>
+
+    <!-- 🧮 Calculate and display the total price (unit price × quantity) -->
+    <h3>🧮 Total Price: ₹{{ '%.2f'|format(discounted_price * quantity) }}</h3>
+
+    <!-- 🚚 Begin the shipping address form -->
     <form method="POST" class="checkout-form">
-        <label for="address">Address:</label>
+
+        <!-- 🏠 Input for full address (street, building, apartment, etc.) -->
+        <label for="address">🏠 Full Address</label>
         <input type="text" id="address" name="address" placeholder="Street, Apartment, etc." required>
-        
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" required>
-        
-        <label for="state">State:</label>
-        <input type="text" id="state" name="state" required>
-        
-        <label for="pin">PIN Code:</label>
-        <input type="text" id="pin" name="pin" required>
-        
-        <button type="submit" class="btn">Proceed to Order</button>
+
+        <!-- 🏙️ Input for city name -->
+        <label for="city">🏙️ City</label>
+        <input type="text" id="city" name="city" placeholder="Enter your city" required>
+
+        <!-- 🌆 Input for state name -->
+        <label for="state">🌆 State</label>
+        <input type="text" id="state" name="state" placeholder="Enter your state" required>
+
+        <!-- 📮 Input for postal code (PIN) -->
+        <label for="pin">📮 PIN Code</label>
+        <input type="text" id="pin" name="pin" placeholder="6-digit postal code" required>
+
+        <!-- ✅ Submit button to place the order -->
+        <button type="submit" class="btn">✅ Proceed to Order</button>
     </form>
-</div>
+
+</div> <!-- 🧾 End of checkout container -->
 {% endblock %}

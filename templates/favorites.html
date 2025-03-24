@@ -1,53 +1,67 @@
-{% extends "base.html" %}
-{% block title %}My Favorites{% endblock %}
+{% extends "base.html" %} {# Inherit the overall layout and common elements from the base.html template #}
+
+{% block title %}My Favorites{% endblock %} {# Set the title block for the page, which appears in the browser tab as "My Favorites" #}
 
 {% block head %}
+    {# Begin the head block to insert page-specific head elements (like CSS links) #}
     <!-- Optionally create a favorites.css for custom styles -->
+    {# Link to a dedicated CSS file (favorites.css) located in the static/css directory for custom styles on the Favorites page #}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/favorites.css') }}">
-{% endblock %}
+{% endblock %} {# End of the head block #}
 
 {% block content %}
-<div class="favorites-container">
-    <h2>My Favorites</h2>
-    {% if items %}
-    <div class="favorites-grid">
-        {% for item in items %}
-        <div class="favorite-card">
+<div class="favorites-container"> {# Main container div for the Favorites page content, used for layout and styling #}
+    <h2>My Favorites</h2> {# Main heading for the Favorites page #}
+    {% if items %} {# Check if there are favorite items available; if "items" is not empty, proceed to display them #}
+    <div class="favorites-grid"> {# Container div with a grid layout to display favorite items as cards #}
+        {% for item in items %} {# Loop over each favorite item in the "items" list #}
+        <div class="favorite-card"> {# Container div for an individual favorite item, styled as a card #}
             <!-- Product Image -->
+            {# Display the product image. The image path is adjusted by splitting the stored path to extract the relative path from the static folder #}
             <img src="{{ url_for('static', filename=item.image.split('static/')[1]) }}" alt="{{ item.name }}">
             
             <!-- Product Name -->
+            {# Display the name of the product in an h3 heading #}
             <h3>{{ item.name }}</h3>
             
             <!-- Calculate the discounted price for display -->
+            {# Set a local variable "discounted_price" by calculating the price after applying the discount percentage #}
             {% set discounted_price = item.price - (item.price * item.discount / 100) %}
+            {# Display the discounted price, formatted to two decimal places and prefixed with the rupee symbol #}
             <p>Price: ₹{{ '%.2f'|format(discounted_price) }}</p>
             
             <!-- If you want to show discount and stock -->
+            {# Display the discount percentage applied to the product #}
             <p>Discount: {{ item.discount }}%</p>
+            {# Display the current stock available for the product #}
             <p>In Stock: {{ item.stock }}</p>
             
             <!-- Actions -->
-            <div class="actions">
+            <div class="actions"> {# Container div for action buttons related to this favorite item #}
                 <!-- Add to Cart -->
+                {# Link to add the product to the shopping cart using the "add_cart" route; passes the product_id as a parameter #}
                 <a href="{{ url_for('add_cart', product_id=item.product_id) }}" class="btn">Add to Cart</a>
                 
                 <!-- Buy Now: goes directly to checkout with quantity=1 -->
+                {# Link to the checkout route with product_id and a query parameter "quantity" set to 1, allowing the user to directly buy the product #}
                 <a href="{{ url_for('checkout', product_id=item.product_id) }}?quantity=1" class="btn buy-now">Buy Now</a>
                 
                 <!-- Remove from Favorites -->
+                {# Link to remove the product from favorites by calling the "remove_favorite" route with the wishlist_id parameter #}
                 <a href="{{ url_for('remove_favorite', wishlist_id=item.wishlist_id) }}" class="btn remove-btn">Remove</a>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+            </div> {# End of actions div #}
+        </div> {# End of favorite-card div for the current item #}
+        {% endfor %} {# End of the loop that iterates over all favorite items #}
+    </div> {# End of the favorites-grid div #}
     
     <!-- Back to Dashboard -->
+    {# Provide a navigation link for the user to go back to the dashboard page #}
     <a href="{{ url_for('dashboard') }}" class="btn back-btn">Back to Dashboard</a>
     
-    {% else %}
-    <p>Your favorites list is empty.</p>
+    {% else %} {# If there are no items in the favorites list (i.e., "items" is empty) #}
+    <p>Your favorites list is empty.</p> {# Display a message informing the user that their favorites list is empty #}
+    {# Provide a link to navigate back to the dashboard or product listing page #}
     <a href="{{ url_for('dashboard') }}" class="btn back-btn">Back to Products</a>
-    {% endif %}
-</div>
-{% endblock %}
+    {% endif %} {# End of the if-else block checking for favorite items #}
+</div> {# End of the favorites-container div #}
+{% endblock %} {# End of the content block for the page #}

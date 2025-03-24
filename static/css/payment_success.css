@@ -1,40 +1,60 @@
-/* Container for the payment success message */
+/* 🎉 Container for the payment success message */
 .success-container {
-    max-width: 600px;               /* Limits container width to 600px */
-    margin: 50px auto;              /* Centers the container and adds vertical margin */
-    text-align: center;             /* Centers the text inside the container */
-    background: #f8f9fa;            /* Light background color for a soft look */
-    padding: 30px;                  /* Adds space inside the container */
-    border-radius: 10px;            /* Rounds the corners of the container */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Adds a subtle shadow for depth */
+    max-width: 600px;               /* ⛓️ Limits the width of the success box to ensure readability on all devices */
+    margin: 50px auto;              /* 🎯 Centers the box both horizontally and vertically with top/bottom spacing */
+    text-align: center;             /* 🧭 Aligns the text content to the center */
+    
+    background: linear-gradient(135deg, #f0fff0, #e6f9ff); /* 🌈 Soft gradient from mint to baby blue for a fresh, happy vibe */
+    padding: 40px;                  /* 🧱 Spacious padding to give breathing room inside the box */
+    border-radius: 16px;            /* 🌀 Nicely rounded corners for a smooth, modern appearance */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);  /* 🌫️ Stronger shadow to lift the card off the background */
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 🪄 Smooth transition for interactivity */
 }
 
-/* Styling for the heading inside the success container */
+/* ✨ Subtle zoom on hover for the whole container */
+.success-container:hover {
+    transform: scale(1.02);        /* 🔍 Slight zoom effect to make the card feel interactive */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* 🌥️ Deeper shadow on hover to emphasize interaction */
+}
+
+/* ✅ Styling for the heading */
 .success-container h2 {
-    color: #28a745;                /* Green text to indicate success */
-    font-size: 24px;               /* Sets a clear, readable font size */
-    margin-bottom: 15px;           /* Space below the heading for visual separation */
+    color: #38c172;                /* 💚 Bright green to indicate success, freshness, and positivity */
+    font-size: 28px;               /* 🔠 Larger font size for the main heading */
+    margin-bottom: 20px;           /* 📏 Extra spacing below to separate from the paragraph */
+    font-weight: bold;             /* 🧱 Makes the heading stand out */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* 🌟 Adds a slight shadow for depth */
 }
 
-/* Styling for paragraphs in the success container */
+/* 📝 Styling for confirmation messages */
 .success-container p {
-    font-size: 18px;               /* Font size for readability */
-    color: #333;                   /* Dark gray text color */
-    margin-bottom: 10px;           /* Adds space below each paragraph */
+    font-size: 18px;               /* 📐 Clean and readable font size */
+    color: #444;                   /* ⚫ Darker shade of gray for stronger contrast and clarity */
+    margin-bottom: 12px;           /* ➖ Slightly increased spacing between messages */
+    line-height: 1.6;              /* 📏 Better line spacing for readability */
 }
 
-/* General button styling */
+/* 🔘 Stylish button */
 .btn {
-    display: inline-block;         /* Allows width, height, and padding to be set */
-    padding: 10px 20px;            /* Adds padding for a clickable area */
-    margin-top: 20px;              /* Space above the button */
-    background-color: #007bff;     /* Blue background color */
-    color: white;                  /* White text for contrast */
-    text-decoration: none;         /* Removes underline from text */
-    border-radius: 5px;            /* Rounds the corners of the button */
+    display: inline-block;         /* 🧩 Allows padding and width settings */
+    padding: 12px 28px;            /* 📦 Generous padding for a comfy click */
+    margin-top: 25px;              /* ⬆️ Separates the button from the message above */
+    
+    background: linear-gradient(45deg, #007bff, #00c6ff); /* 💙 Gradient blue for a vibrant look */
+    color: white;                  /* ⚪ White text for contrast */
+    text-decoration: none;         /* 🚫 Removes link underline */
+    border-radius: 8px;            /* 🌀 Rounder corners for a pill-style button */
+    font-weight: 600;              /* 💪 Slightly bolder text */
+    font-size: 16px;               /* 🔡 Good size for CTA (call to action) */
+    
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3); /* 🌠 Adds glow around the button */
+    transition: all 0.3s ease;     /* 🧚 Smooth transition on hover */
 }
 
-/* Hover effect for buttons */
+/* 🎯 Hover effect for the button */
 .btn:hover {
-    background-color: #0056b3;     /* Darker blue background when hovered */
+    background: linear-gradient(45deg, #0056b3, #00a2e3); /* 💙 Darker gradient on hover */
+    box-shadow: 0 6px 16px rgba(0, 86, 179, 0.4); /* 🔮 Stronger glow on hover */
+    transform: scale(1.05);       /* 🧲 Makes the button pop slightly */
 }

@@ -1,195 +1,193 @@
-/* Container that wraps the entire about section */
+/* 📦 Container that wraps the entire about section */
 .about-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    text-align: center;
-    position: relative;
-    overflow: hidden; /* Allows child elements with absolute positioning */
+    max-width: 1000px; /* ⛓️ Limits the container width to 1000px for readability on large screens */
+    margin: 40px auto; /* 🎯 Adds 40px vertical spacing and centers the container horizontally */
+    padding: 20px; /* 🧱 Adds internal spacing (padding) for breathing room */
+    background-color: #fff; /* 🎨 Sets the background to white for clean, minimal look */
+    border-radius: 8px; /* 🌀 Slightly rounds the corners of the container */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* 🌫️ Subtle shadow for depth and elevation */
+    text-align: center; /* 📍 Centers all the text inside the container */
+    position: relative; /* 📐 Required for absolutely positioned child elements (like ::before) */
+    overflow: hidden; /* 🚫 Prevents content (like pseudo-elements) from overflowing outside the container */
 }
 
-/* A subtle background gradient behind the content */
+/* 🌈 A subtle background gradient behind the content using a pseudo-element */
 .about-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0,123,255,0.1), rgba(108,117,125,0.1));
-    pointer-events: none; /* So it doesn’t affect clicking */
-    z-index: 0; /* Place behind all content */
+    content: ""; /* 🧼 Empty content for the pseudo-element (required to display) */
+    position: absolute; /* 📌 Absolutely positioned relative to the container */
+    top: 0; left: 0; /* 📍 Stretches from top-left */
+    width: 100%; height: 100%; /* 📏 Covers the entire container */
+    background: linear-gradient(135deg, rgba(0,123,255,0.1), rgba(108,117,125,0.1)); /* 🎨 Light diagonal gradient background */
+    pointer-events: none; /* 🖱️ Allows mouse interactions to pass through */
+    z-index: 0; /* 📉 Sits behind all other content */
 }
 
-/* Main heading for the about page */
+/* 🧭 Main heading for the about page */
 .about-container h1 {
-    margin-bottom: 20px;
-    font-size: 32px;
-    position: relative;
-    z-index: 1; /* Ensure it stays above the gradient */
+    margin-bottom: 20px; /* 📏 Adds space below the heading */
+    font-size: 32px; /* 🔠 Large, prominent heading size */
+    position: relative; /* 📐 Needed to layer over the ::before background */
+    z-index: 1; /* 🔝 Keeps it above the gradient background */
 }
 
-/* Hero Section / Banner with an image */
+/* 🖼️ Hero Section / Banner wrapper */
 .hero-section {
-    position: relative;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    overflow: hidden;
-    z-index: 1; /* Above the container gradient */
+    position: relative; /* 📌 Allows inner elements like overlay text to be absolutely positioned */
+    margin-bottom: 30px; /* 📏 Spacing below this section */
+    border-radius: 8px; /* 🌀 Rounded edges for the image container */
+    overflow: hidden; /* 🫳 Ensures image and overlay don't overflow out of the box */
+    z-index: 1; /* 🧱 Places the hero section above the background gradient */
 }
 
-/* Hero image takes full width, with a subtle zoom-on-hover effect */
+/* 🖼️ Hero image setup */
 .hero-section img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    transition: transform 0.4s ease;
+    width: 100%; /* 🪟 Makes the image span full width of its container */
+    height: auto; /* 🖼️ Maintains aspect ratio */
+    border-radius: 8px; /* 🌀 Matches the container's rounded corners */
+    transition: transform 0.4s ease; /* 🧚 Smooth transition for hover zoom effect */
 }
 
+/* 🔍 Slight zoom-in when hovering over the image */
 .hero-section img:hover {
-    transform: scale(1.03); /* Slight zoom */
+    transform: scale(1.03); /* 🔎 Slightly enlarges image for interactive feel */
 }
 
-/* Text overlay on the hero image */
+/* 📝 Text overlay that appears on the hero image */
 .hero-text {
-    position: absolute;
-    bottom: 20px;
-    left: 40px;
-    color: #fff;
-    text-align: left;
-    z-index: 2; /* Above the image */
-    animation: fadeInUp 1s ease forwards; /* Simple fade/slide animation */
-    opacity: 0; /* Start invisible (for the animation) */
-    transform: translateY(20px); /* Slide up effect */
+    position: absolute; /* 📌 Positions it over the image */
+    bottom: 20px; left: 40px; /* 📍 Sits near the bottom-left of the image */
+    color: #fff; /* ⚪ White text for contrast on image */
+    text-align: left; /* 📃 Aligns overlay text to the left */
+    z-index: 2; /* ⬆️ Ensures it sits above the image */
+    animation: fadeInUp 1s ease forwards; /* ✨ Entry animation for overlay */
+    opacity: 0; /* 👻 Starts invisible for animation */
+    transform: translateY(20px); /* 🛗 Slide-up animation start position */
 }
 
-/* Large heading over the hero image */
+/* 🔠 Large heading text in the overlay */
 .hero-text h2 {
-    font-size: 36px;
-    margin: 0;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    font-size: 36px; /* 🧱 Large and bold for impact */
+    margin: 0; /* 🧹 Removes default margin */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* 🌚 Adds shadow for legibility on image */
 }
 
-/* Subtitle or tagline in the hero */
+/* 🗣️ Subtitle/tagline in overlay */
 .hero-text p {
-    font-size: 18px;
-    margin: 5px 0 0;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    font-size: 18px; /* 📐 Medium-sized font */
+    margin: 5px 0 0; /* 🧹 Slight top margin only */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* 🌒 Shadow for visibility */
 }
 
-/* Keyframe animation for hero-text fade-in and slide-up */
+/* ✨ Keyframes for slide-up fade-in effect */
 @keyframes fadeInUp {
     to {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1; /* 🎬 Final state: visible */
+        transform: translateY(0); /* 🛗 Final state: normal position */
     }
 }
 
-/* Section styling: used for each content block in the About page */
+/* 📄 Section blocks within the about page */
 .section {
-    margin: 30px 0;
-    text-align: left;
-    position: relative;
-    z-index: 1;
-    animation: fadeIn 1s ease forwards;
-    opacity: 0; /* Start invisible for fade-in animation */
+    margin: 30px 0; /* 📏 Vertical spacing between sections */
+    text-align: left; /* 📃 Aligns text to the left */
+    position: relative; /* 📐 Prepares for any future absolutely positioned elements */
+    z-index: 1; /* 📉 Keeps content above the background layer */
+    animation: fadeIn 1s ease forwards; /* ✨ Fade-in animation */
+    opacity: 0; /* 👻 Hidden initially for animation */
 }
 
-/* Slight fade-in animation for sections */
+/* ✨ Simple fade-in keyframe for sections */
 @keyframes fadeIn {
     to {
-        opacity: 1;
+        opacity: 1; /* 🎬 Final state: visible */
     }
 }
 
-/* Section headings */
+/* 🔠 Section headings */
 .section h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #333;
-    border-left: 4px solid #007bff;
-    padding-left: 10px;
+    font-size: 24px; /* 🧱 Prominent subheading size */
+    margin-bottom: 10px; /* 📏 Spacing below the heading */
+    color: #333; /* ⚫ Dark color for good readability */
+    border-left: 4px solid #007bff; /* 📘 Blue accent line on the left */
+    padding-left: 10px; /* 📏 Padding between border and text */
 }
 
-/* Paragraphs within each section */
+/* 📑 Paragraph text inside each section */
 .section p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #555;
-    margin-top: 10px;
+    font-size: 16px; /* 📐 Readable text size */
+    line-height: 1.6; /* 🧬 Good line spacing for easier reading */
+    color: #555; /* ⚫ Slightly lighter gray for subtle look */
+    margin-top: 10px; /* 📏 Space above the paragraph */
 }
 
-/* CTA (Call-to-Action) section for buttons */
+/* 📣 Call-to-action (CTA) section wrapper */
 .cta-section {
-    margin-top: 40px;
-    position: relative;
-    z-index: 1;
-    animation: fadeIn 1.5s ease forwards;
-    opacity: 0; /* Start invisible for fade-in animation */
+    margin-top: 40px; /* 📏 Adds separation from previous content */
+    position: relative; /* 📐 For potential layering */
+    z-index: 1; /* 🔝 Keeps it above background */
+    animation: fadeIn 1.5s ease forwards; /* ✨ Delayed fade-in animation */
+    opacity: 0; /* 👻 Hidden before animation starts */
 }
 
-/* Generic button styling */
+/* 🟦 Generic button style */
 .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #007bff;
-    color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.3s;
-    margin: 5px;
-    font-weight: 500;
-    position: relative;
-    z-index: 1;
+    display: inline-block; /* 🧩 Makes button behave like a block but inline */
+    padding: 10px 20px; /* 📦 Adds clickable area horizontally and vertically */
+    background: #007bff; /* 🔵 Bright blue background */
+    color: #fff; /* ⚪ White text for contrast */
+    border-radius: 5px; /* 🌀 Smooth, rounded corners */
+    text-decoration: none; /* 🚫 Removes underline */
+    transition: background 0.3s, transform 0.3s; /* 🧚 Smooth hover effect */
+    margin: 5px; /* 📏 Spacing around buttons */
+    font-weight: 500; /* 💪 Medium-bold font weight */
+    position: relative; /* 📐 Maintains z-index layering */
+    z-index: 1; /* 🔝 Ensures button sits on top of background */
 }
 
-/* Hover effect for buttons */
+/* 🎯 Button hover interaction */
 .btn:hover {
-    background: #0056b3;
-    transform: translateY(-2px);
+    background: #0056b3; /* 🔵 Slightly darker blue on hover */
+    transform: translateY(-2px); /* 🪄 Lifts the button slightly */
 }
 
-/* Back button specifically */
+/* ⬅️ Styling for a specific back button */
 .back-btn {
-    background: #6c757d;
+    background: #6c757d; /* ⚙️ Muted gray background */
 }
 
-/* Hover effect for the back button */
+/* 🔁 Hover state for the back button */
 .back-btn:hover {
-    background: #5a6268;
+    background: #5a6268; /* ⚙️ Slightly darker gray on hover */
 }
 
-/* MEDIA QUERIES: Responsive Adjustments */
+/* 📱 MEDIA QUERIES: Responsive Adjustments */
 
-/* For smaller screens, ensure text and images are still readable */
+/* 💻 Medium screen sizes and below */
 @media (max-width: 768px) {
     .hero-text h2 {
-        font-size: 28px;
+        font-size: 28px; /* 🔠 Reduces font size for smaller screens */
     }
     .hero-text p {
-        font-size: 16px;
+        font-size: 16px; /* 📐 Adjusts subtitle font size */
     }
     .section h2 {
-        font-size: 20px;
+        font-size: 20px; /* 📏 Shrinks section heading */
     }
     .section p {
-        font-size: 15px;
+        font-size: 15px; /* 📑 Shrinks paragraph font for mobile */
     }
 }
 
-/* For very small screens, reduce margins and adjust container width */
+/* 📱 Very small screens like phones */
 @media (max-width: 480px) {
     .about-container {
-        margin: 20px;
-        padding: 15px;
+        margin: 20px; /* 📏 Reduces overall margin to fit small screens */
+        padding: 15px; /* 📦 Slightly smaller padding */
     }
     .hero-text h2 {
-        font-size: 24px;
+        font-size: 24px; /* 🔠 Smaller heading for limited space */
     }
     .hero-text p {
-        font-size: 14px;
+        font-size: 14px; /* 📐 More compact text for subtitles */
     }
 }

@@ -41,7 +41,8 @@
                 </td>
                 <!-- Status Display -->
                 <td>
-                    <span class="status {{ order.status|lower }}">{{ order.status }}</span>
+                    <span class="status {{ order.status|lower|replace(' ', '-') }}">{{ order.status }}</span>
+
                 </td>
                 <!-- Actions: View, Cancel, Return, Delete -->
                 <td>

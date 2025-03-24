@@ -1,40 +1,46 @@
-/* Container for the payment section */
+/* 💎 Stylish container for the payment section */
 .payment-container {
-    max-width: 500px;               /* Limits the width to 500px */
-    margin: 50px auto;              /* Centers the container and adds vertical spacing */
-    padding: 30px;                  /* Adds space inside the container */
-    background: #f8f9fa;            /* Light gray background for a clean look */
-    border-radius: 10px;            /* Rounds the container edges */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Adds a soft shadow for depth */
-    text-align: center;             /* Centers all text inside the container */
+    max-width: 550px;               /* 📐 Slightly increased max-width for a more spacious layout */
+    margin: 60px auto;              /* 📏 Vertically centered with increased top-bottom spacing */
+    padding: 40px;                  /* 🧺 Extra padding for a luxurious spacious feel */
+    background: linear-gradient(135deg, #ffffff, #e3f2fd); /* 🎨 Soft gradient background for subtle elegance */
+    border-radius: 16px;            /* 🌀 Smoothly rounded corners for a modern UI */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);  /* 🌫️ Deeper shadow for visual depth */
+    text-align: center;             /* 📝 Center-align all text inside the box */
+    font-family: 'Segoe UI', sans-serif; /* 🖋️ Clean, modern font */
 }
 
-/* Styling for the payment heading */
+/* 🧾 Vibrant heading */
 .payment-container h2 {
-    color: #007bff;                 /* Blue color for an eye-catching heading */
-    margin-bottom: 20px;            /* Space below the heading for separation */
+    color: #4a00e0;                 /* 🔮 Deep violet gradient start for a rich heading color */
+    margin-bottom: 25px;            /* 📉 Adds more spacing below heading */
+    font-size: 28px;                /* 🔠 Larger font size for emphasis */
+    font-weight: bold;              /* 🧱 Makes the heading bold */
 }
 
-/* Styling for paragraph text inside the payment container */
+/* 📄 Stylish text info */
 .payment-container p {
-    font-size: 18px;                /* Sets a readable font size */
-    color: #333;                    /* Dark gray text color */
-    margin-bottom: 10px;            /* Space below the paragraph */
+    font-size: 18px;                /* 🅰️ Readable font size */
+    color: #444;                    /* ⚫ Medium-dark gray for softer readability */
+    margin-bottom: 15px;            /* 📏 Extra space between lines */
+    line-height: 1.6;               /* 📐 Improves vertical spacing for clarity */
 }
 
-/* Styling for the payment button */
+/* 🟢 Enhanced button */
 .pay-btn {
-    padding: 10px 20px;             /* Adds padding for a larger clickable area */
-    font-size: 18px;                /* Increases font size for better readability */
-    background-color: #28a745;      /* Green color to indicate a positive action */
-    color: white;                   /* White text for contrast */
-    border: none;                   /* Removes default button border */
-    border-radius: 5px;             /* Rounds the button edges */
-    cursor: pointer;                /* Changes cursor to pointer when hovered */
-    transition: 0.3s ease;          /* Smooth transition effect for hover */
+    padding: 12px 28px;             /* 📦 Bigger button with more clickable area */
+    font-size: 18px;                /* 🔡 Clear, readable text */
+    background: linear-gradient(45deg, #00c853, #64dd17); /* 💚 Green gradient for a vibrant button */
+    color: #fff;                    /* ⚪ White text for strong contrast */
+    border: none;                   /* 🚫 No border */
+    border-radius: 8px;             /* 🌀 More rounded corners */
+    cursor: pointer;                /* 🖱️ Pointer cursor on hover */
+    box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3); /* 🌟 Adds glow to the button */
+    transition: all 0.3s ease-in-out; /* 🎬 Smooth animation on hover */
 }
 
-/* Hover effect for the payment button */
+/* ✨ Hover effect */
 .pay-btn:hover {
-    background-color: #218838;      /* Darker green shade on hover for visual feedback */
+    transform: scale(1.05);         /* 🔍 Slightly scales the button up for a popping effect */
+    background: linear-gradient(45deg, #00b342, #76ff03); /* 💫 Lighter gradient on hover */
 }

@@ -52,8 +52,8 @@
 .status.shipped {
     color: #2196f3; /* Blue */
 }
-.status["out for delivery"] {
-    color: #4caf50; /* Green */
+.status.out-for-delivery {
+    color: #4caf50;
 }
 .status.delivered {
     color: #388e3c; /* Darker Green */

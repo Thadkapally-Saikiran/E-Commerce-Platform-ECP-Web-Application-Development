@@ -1,57 +1,66 @@
-/* cart.css */
+/* 🎯 Main container for the cart page */
 .cart-container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  max-width: 800px; /* 📏 Limits container width to 800px for readability */
+  margin: 40px auto; /* 🧍 Vertically separates from other sections & centers horizontally */
+  padding: 20px; /* 🧱 Adds internal space inside the container */
+  background: #fff; /* 🎨 Sets background to white for a clean layout */
+  border-radius: 8px; /* 🌀 Smooth, rounded corners for a modern look */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* 🌫️ Subtle drop shadow for depth */
+  text-align: center; /* 📍 Aligns all text content to the center */
 }
 
+/* 📦 Table styling for the cart items */
 .cart-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+  width: 100%; /* 🧩 Table takes up full width of the container */
+  border-collapse: collapse; /* 🔗 Merges table borders into a single border */
+  margin-bottom: 20px; /* 📏 Adds spacing below the table */
 }
 
+/* 📑 Applies to both table headers and data cells */
 .cart-table th, .cart-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
+  border: 1px solid #ddd; /* 🪟 Light gray border around each cell */
+  padding: 10px; /* 📦 Space inside cells for readability */
+  text-align: center; /* 📍 Centers content within each cell */
 }
 
+/* 🖼️ Product image inside the table */
 .cart-table img {
-  border-radius: 4px;
+  border-radius: 4px; /* 🌀 Slightly rounds image corners for smoother visuals */
 }
 
+/* 🔘 Generic button styling used for actions like delete or back */
 .btn {
-  padding: 8px 12px;
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  margin: 2px;
-  transition: 0.3s;
+  padding: 8px 12px; /* 📦 Padding for clickable area */
+  background: #007bff; /* 🔵 Default button background (Bootstrap Blue) */
+  color: #fff; /* ⚪ White text for contrast */
+  border: none; /* 🚫 Removes default border */
+  border-radius: 5px; /* 🌀 Rounded corners for modern button style */
+  text-decoration: none; /* 🚫 Removes underline if it's a link */
+  margin: 2px; /* 📏 Small spacing between multiple buttons */
+  transition: 0.3s; /* ✨ Smooth transition for hover effects */
 }
 
+/* 🖱️ Hover effect for generic button */
 .btn:hover {
-  background: #0056b3;
+  background: #0056b3; /* 🔵 Darker blue on hover for interactive feedback */
 }
 
+/* ❌ Styling for delete button (like remove item) */
 .delete-btn {
-  background: #f44336;
+  background: #f44336; /* 🔴 Bright red background for destructive action */
 }
 
+/* 🖱️ Hover effect for delete button */
 .delete-btn:hover {
-  background: #d32f2f;
+  background: #d32f2f; /* 🔴 Darker red on hover for contrast */
 }
 
+/* ⬅️ Back button (usually to return to products or home) */
 .back-btn {
-  background: #28a745;
+  background: #28a745; /* 🟢 Bootstrap green for positive or navigation actions */
 }
 
+/* 🖱️ Hover effect for back button */
 .back-btn:hover {
-  background: #218838;
+  background: #218838; /* 🟢 Slightly darker green on hover for depth */
 }
