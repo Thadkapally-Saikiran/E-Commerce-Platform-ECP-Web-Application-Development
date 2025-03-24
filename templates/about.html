@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}About Us{% endblock %}
+
+{% block head %}
+    <!-- Optional dedicated CSS file for the About page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <h1>About E-Shop</h1>
+
+    <!-- Hero Section / Banner -->
+    <div class="hero-section">
+        <img src="{{ url_for('static', filename='images/E-shop.webp') }}" alt="E-Shop Banner">
+        <div class="hero-text">
+            <h2>Welcome to E-Shop</h2>
+            <p>Your one-stop destination for all your shopping needs!</p>
+        </div>
+    </div>
+
+    <!-- Our Story -->
+    <div class="section">
+        <h2>Our Story</h2>
+        <p>
+            Founded in 2025, E-Shop began with a mission to bring the best products 
+            at unbeatable prices to customers worldwide. Over the years, we’ve 
+            grown into a trusted name, offering an extensive range of electronics, 
+            accessories, and more. We’re proud to serve millions of happy customers 
+            who continue to choose E-Shop for their shopping needs.
+        </p>
+    </div>
+
+    <!-- Mission and Vision -->
+    <div class="section">
+        <h2>Mission &amp; Vision</h2>
+        <p>
+            Our mission is simple: to provide high-quality products and exceptional 
+            customer service, making online shopping easy, affordable, and enjoyable.
+            We envision a future where technology seamlessly connects people with 
+            the items they love—at the click of a button.
+        </p>
+    </div>
+
+    <!-- Our Team -->
+    <div class="section">
+        <h2>Meet the Team</h2>
+        <p>
+            Our dedicated team of professionals works tirelessly to source the best 
+            products, negotiate unbeatable deals, and ensure prompt deliveries. We 
+            believe in putting customers first, so we’re always here to help with 
+            any questions or concerns you may have.
+        </p>
+    </div>
+
+    <!-- Call-to-Action or Back to Dashboard/Home -->
+    <div class="cta-section">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-success">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

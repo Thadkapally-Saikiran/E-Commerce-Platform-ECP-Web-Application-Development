@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}My Favorites{% endblock %}
+
+{% block head %}
+    <!-- Optionally create a favorites.css for custom styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/favorites.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="favorites-container">
+    <h2>My Favorites</h2>
+    {% if items %}
+    <div class="favorites-grid">
+        {% for item in items %}
+        <div class="favorite-card">
+            <!-- Product Image -->
+            <img src="{{ url_for('static', filename=item.image.split('static/')[1]) }}" alt="{{ item.name }}">
+            
+            <!-- Product Name -->
+            <h3>{{ item.name }}</h3>
+            
+            <!-- Calculate the discounted price for display -->
+            {% set discounted_price = item.price - (item.price * item.discount / 100) %}
+            <p>Price: ₹{{ '%.2f'|format(discounted_price) }}</p>
+            
+            <!-- If you want to show discount and stock -->
+            <p>Discount: {{ item.discount }}%</p>
+            <p>In Stock: {{ item.stock }}</p>
+            
+            <!-- Actions -->
+            <div class="actions">
+                <!-- Add to Cart -->
+                <a href="{{ url_for('add_cart', product_id=item.product_id) }}" class="btn">Add to Cart</a>
+                
+                <!-- Buy Now: goes directly to checkout with quantity=1 -->
+                <a href="{{ url_for('checkout', product_id=item.product_id) }}?quantity=1" class="btn buy-now">Buy Now</a>
+                
+                <!-- Remove from Favorites -->
+                <a href="{{ url_for('remove_favorite', wishlist_id=item.wishlist_id) }}" class="btn remove-btn">Remove</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Back to Dashboard -->
+    <a href="{{ url_for('dashboard') }}" class="btn back-btn">Back to Dashboard</a>
+    
+    {% else %}
+    <p>Your favorites list is empty.</p>
+    <a href="{{ url_for('dashboard') }}" class="btn back-btn">Back to Products</a>
+    {% endif %}
+</div>
+{% endblock %}

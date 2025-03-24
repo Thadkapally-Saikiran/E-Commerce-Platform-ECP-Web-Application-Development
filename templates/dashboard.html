@@ -17,9 +17,9 @@
             <input type="text" id="search-bar" placeholder="Search products...">
             <div class="nav-links">
                 <!-- Link to Favorites, displaying count using favorites list length -->
-                <a href="{{ url_for('add_favorite') }}">❤️ Favorites ({{ favorites|length }})</a>
+                <a href="{{ url_for('favorites') }}">❤️ Favorites</a>
                 <!-- Link to Orders page -->
-                <a href="{{ url_for('add_order') }}">🛒 My Orders</a>
+                <a href="{{ url_for('my_orders') }}">📦 My Orders</a>
                 <!-- Link to Cart page -->
                 <a href="{{ url_for('cart') }}">🛍️ Cart</a>
             </div>

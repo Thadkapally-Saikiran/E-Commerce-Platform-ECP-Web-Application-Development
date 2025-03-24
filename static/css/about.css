@@ -1,0 +1,195 @@
+/* Container that wraps the entire about section */
+.about-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Allows child elements with absolute positioning */
+}
+
+/* A subtle background gradient behind the content */
+.about-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0,123,255,0.1), rgba(108,117,125,0.1));
+    pointer-events: none; /* So it doesn’t affect clicking */
+    z-index: 0; /* Place behind all content */
+}
+
+/* Main heading for the about page */
+.about-container h1 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    position: relative;
+    z-index: 1; /* Ensure it stays above the gradient */
+}
+
+/* Hero Section / Banner with an image */
+.hero-section {
+    position: relative;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1; /* Above the container gradient */
+}
+
+/* Hero image takes full width, with a subtle zoom-on-hover effect */
+.hero-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.4s ease;
+}
+
+.hero-section img:hover {
+    transform: scale(1.03); /* Slight zoom */
+}
+
+/* Text overlay on the hero image */
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
+    color: #fff;
+    text-align: left;
+    z-index: 2; /* Above the image */
+    animation: fadeInUp 1s ease forwards; /* Simple fade/slide animation */
+    opacity: 0; /* Start invisible (for the animation) */
+    transform: translateY(20px); /* Slide up effect */
+}
+
+/* Large heading over the hero image */
+.hero-text h2 {
+    font-size: 36px;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+/* Subtitle or tagline in the hero */
+.hero-text p {
+    font-size: 18px;
+    margin: 5px 0 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+/* Keyframe animation for hero-text fade-in and slide-up */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section styling: used for each content block in the About page */
+.section {
+    margin: 30px 0;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 1s ease forwards;
+    opacity: 0; /* Start invisible for fade-in animation */
+}
+
+/* Slight fade-in animation for sections */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Section headings */
+.section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+    border-left: 4px solid #007bff;
+    padding-left: 10px;
+}
+
+/* Paragraphs within each section */
+.section p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* CTA (Call-to-Action) section for buttons */
+.cta-section {
+    margin-top: 40px;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 1.5s ease forwards;
+    opacity: 0; /* Start invisible for fade-in animation */
+}
+
+/* Generic button styling */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+    margin: 5px;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover effect for buttons */
+.btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Back button specifically */
+.back-btn {
+    background: #6c757d;
+}
+
+/* Hover effect for the back button */
+.back-btn:hover {
+    background: #5a6268;
+}
+
+/* MEDIA QUERIES: Responsive Adjustments */
+
+/* For smaller screens, ensure text and images are still readable */
+@media (max-width: 768px) {
+    .hero-text h2 {
+        font-size: 28px;
+    }
+    .hero-text p {
+        font-size: 16px;
+    }
+    .section h2 {
+        font-size: 20px;
+    }
+    .section p {
+        font-size: 15px;
+    }
+}
+
+/* For very small screens, reduce margins and adjust container width */
+@media (max-width: 480px) {
+    .about-container {
+        margin: 20px;
+        padding: 15px;
+    }
+    .hero-text h2 {
+        font-size: 24px;
+    }
+    .hero-text p {
+        font-size: 14px;
+    }
+}

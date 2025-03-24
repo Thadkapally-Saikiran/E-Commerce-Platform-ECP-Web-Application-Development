@@ -99,6 +99,8 @@ CREATE TABLE orders (
 -- Query to check the contents of the orders table
 select * from orders;
 
+
+
 -------------------------------------------------------------
 -- Create Wishlist Table
 -------------------------------------------------------------

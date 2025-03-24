@@ -345,39 +345,31 @@ def payment(order_id):
     # Render the payment page, passing order, product, Razorpay order id, and key to the template
     return render_template('payment.html', order=order, product=product, razorpay_order_id=razorpay_order['id'], razorpay_key=RAZORPAY_KEY_ID)
 
+
 # Route to handle payment success after processing the payment
 @app.route('/payment_success/<int:order_id>', methods=['POST'])
 def payment_success(order_id):
     cursor = db.cursor(dictionary=True)
-
-    # Fetch the order details from the orders table
+    # Fetch the order details
     cursor.execute("SELECT * FROM orders WHERE id = %s", (order_id,))
     order = cursor.fetchone()
-
     if not order:
         return "Order not found", 404
 
-    # Fetch product details related to the order from the products table
+    # Fetch the product details
     cursor.execute("SELECT * FROM products WHERE id = %s", (order['product_id'],))
     product = cursor.fetchone()
-
     if not product:
         return "Product not found", 404
 
-    # Retrieve payment details from the form submitted by Razorpay
+    # Retrieve payment details from the form
     payment_id = request.form.get("razorpay_payment_id")
     razorpay_order_id = request.form.get("razorpay_order_id")
     signature = request.form.get("razorpay_signature")
-
-    print("Received Payment ID:", payment_id)
-    print("Received Order ID:", razorpay_order_id)
-    print("Received Signature:", signature)
-
-    # Ensure all payment details are present
     if not payment_id or not razorpay_order_id or not signature:
         return "Missing payment details", 400
 
-    # Prepare a dictionary of payment details for signature verification
+    # Prepare the parameters for signature verification
     params_dict = {
         'razorpay_order_id': razorpay_order_id,
         'razorpay_payment_id': payment_id,
@@ -385,32 +377,25 @@ def payment_success(order_id):
     }
 
     try:
-        # Verify the payment signature to ensure the payment is secure
+        # Verify the payment signature
         razorpay_client.utility.verify_payment_signature(params_dict)
-        # If verification is successful, update the order status and payment details in the database
+        # Update the order status to "Order Placed" after successful payment
         cursor.execute(
             """
             UPDATE orders 
             SET status = %s, payment_status = %s, payment_mode = %s
             WHERE id = %s
             """, 
-            ("Processing", "Completed", "Razorpay", order_id)
+            ("Shipped", "Completed", "Razorpay", order_id)
         )
-
+        db.commit()
         cursor.close()
-
-        # Render the payment success page with order and product details
+        # Render payment_success.html (make sure this template shows the updated status)
         return render_template('payment_success.html', order=order, product=product)
-    
     except razorpay.errors.SignatureVerificationError:
-        # If signature verification fails, return an error response
         return "Payment verification failed", 400
 
-# Dummy routes for favorite, order, and cart functionalities
-@app.route('/add_favorite')
-def add_favorite():
-    # Redirect to dashboard after adding a favorite (functionality to be implemented)
-    return redirect(url_for('dashboard'))
+
 
 @app.route('/add_order')
 def add_order():
@@ -482,10 +467,218 @@ def delete_cart(cart_id):
     return redirect(url_for('cart'))
 
 
-# Dummy routes for about and contact pages that redirect to dashboard (placeholders)
+
+# -----------------------
+# FAVORITES FUNCTIONALITY
+# -----------------------
+
+@app.route('/add_favorite/<int:product_id>')
+def add_favorite(product_id):
+    """
+    Adds a product to the user's favorites (wishlist).
+    If the user is not logged in, redirects to login.
+    """
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    cursor = db.cursor()
+    # Check if product is already in favorites for this user
+    cursor.execute("""
+        SELECT id 
+        FROM wishlist 
+        WHERE user_id = %s AND product_id = %s
+    """, (session['user_id'], product_id))
+    existing = cursor.fetchone()
+
+    if not existing:
+        # Insert a new record into wishlist if not already favorited
+        cursor.execute("""
+            INSERT INTO wishlist (user_id, product_id) 
+            VALUES (%s, %s)
+        """, (session['user_id'], product_id))
+        db.commit()
+
+    cursor.close()
+    # Redirect to the favorites page (or you can redirect to 'dashboard' if you prefer)
+    return redirect(url_for('favorites'))
+
+
+@app.route('/favorites')
+def favorites():
+    """
+    Displays all favorite products for the logged-in user.
+    If user not logged in, redirects to login.
+    """
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    cursor = db.cursor(dictionary=True)
+    # Join wishlist with products table to get product details
+    cursor.execute("""
+        SELECT 
+            w.id AS wishlist_id,
+            p.id AS product_id,
+            p.name,
+            p.price,
+            p.discount,
+            p.quantity AS stock,
+            p.image
+        FROM wishlist w
+        JOIN products p ON w.product_id = p.id
+        WHERE w.user_id = %s
+    """, (session['user_id'],))
+    favorite_items = cursor.fetchall()
+    cursor.close()
+
+    return render_template('favorites.html', items=favorite_items)
+
+
+@app.route('/remove_favorite/<int:wishlist_id>')
+def remove_favorite(wishlist_id):
+    """
+    Removes a favorite item from the wishlist by wishlist ID.
+    Only if the user is logged in and owns the wishlist entry.
+    """
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    cursor = db.cursor()
+    cursor.execute("""
+        DELETE FROM wishlist 
+        WHERE id = %s AND user_id = %s
+    """, (wishlist_id, session['user_id']))
+    db.commit()
+    cursor.close()
+
+    return redirect(url_for('favorites'))
+
+
+# -------------------
+# MY ORDERS FUNCTIONALITY
+# -------------------
+
+@app.route('/my_orders')
+def my_orders():
+    """
+    Displays all orders for the logged-in user in a table/grid.
+    Each order shows product details, status, date, etc.
+    """
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    cursor = db.cursor(dictionary=True)
+    # Join orders with products so we can display product details
+    query = """
+        SELECT 
+            o.id AS order_id,
+            o.product_id,
+            o.quantity,
+            o.total_price,
+            o.address,
+            o.order_date,
+            o.delivery_date,
+            o.status,
+            p.name AS product_name,
+            p.image AS product_image
+        FROM orders o
+        JOIN products p ON o.product_id = p.id
+        WHERE o.user_id = %s
+        ORDER BY o.order_date DESC
+    """
+    cursor.execute(query, (session['user_id'],))
+    orders = cursor.fetchall()
+    cursor.close()
+
+    return render_template('my_orders.html', orders=orders)
+
+
+@app.route('/cancel_order/<int:order_id>')
+def cancel_order(order_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    cursor = db.cursor(dictionary=True)
+    # Fetch order status for verification
+    cursor.execute("SELECT status FROM orders WHERE id=%s AND user_id=%s", (order_id, session['user_id']))
+    order = cursor.fetchone()
+
+    if not order:
+        cursor.close()
+        return redirect(url_for('my_orders'))
+    
+    # Only allow cancellation if the order is still in "Processing"
+    if order['status'] == 'Processing':
+        cursor.execute("UPDATE orders SET status='Cancelled' WHERE id=%s", (order_id,))
+        db.commit()
+
+    cursor.close()
+    return redirect(url_for('my_orders'))
+
+
+
+@app.route('/return_order/<int:order_id>')
+def return_order(order_id):
+    """
+    Allows a user to request a return if the order is 'Delivered'.
+    This is just an example; you can adapt the logic as you like.
+    """
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    cursor = db.cursor(dictionary=True)
+    # Fetch the order to check its status
+    cursor.execute("SELECT status FROM orders WHERE id=%s AND user_id=%s", (order_id, session['user_id']))
+    order = cursor.fetchone()
+
+    if not order:
+        # No order found or belongs to another user
+        cursor.close()
+        return redirect(url_for('my_orders'))
+
+    # If the order is 'Delivered', user can request a return
+    if order['status'] == 'Delivered':
+        cursor.execute("UPDATE orders SET status='Returned' WHERE id=%s", (order_id,))
+        db.commit()
+
+    cursor.close()
+    return redirect(url_for('my_orders'))
+
+
+@app.route('/delete_order/<int:order_id>')
+def delete_order(order_id):
+    """
+    Permanently removes an order from the database 
+    (for the logged-in user only).
+    """
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    cursor = db.cursor(dictionary=True)
+    # Verify this order belongs to the logged-in user
+    cursor.execute("SELECT id FROM orders WHERE id=%s AND user_id=%s", (order_id, session['user_id']))
+    order = cursor.fetchone()
+
+    if not order:
+        # Order doesn't exist or doesn't belong to this user
+        cursor.close()
+        return redirect(url_for('my_orders'))
+
+    # Delete the order from the database
+    cursor.execute("DELETE FROM orders WHERE id=%s", (order_id,))
+    db.commit()
+    cursor.close()
+
+    return redirect(url_for('my_orders'))
+
+
+
 @app.route('/about')
 def about():
-    return redirect(url_for('dashboard'))
+    """
+    Renders the About page.
+    """
+    return render_template('about.html')
+
 
 @app.route('/contact')
 def contact():
@@ -493,8 +686,8 @@ def contact():
 
 # Run the Flask application on port 6002 in debug mode
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    app.run(port=6002, debug=True)
     # import os
-    # port = int(os.environ.get("PORT", 5000))
+    # port = int(os.environ.get("PORT", 6002))
     # app.run(host="0.0.0.0", port=port, debug=True)
 
