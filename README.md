@@ -1,4 +1,4 @@
-# Flask_Ecommerce 🚀
+# E-Commerce Web Application Development 🚀
 
 ![](ecommerce.png)
 
